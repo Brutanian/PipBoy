@@ -1,0 +1,553 @@
+[gd_scene load_steps=18 format=3 uid="uid://c85wfs03rh6dc"]
+
+[ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_7qn0h"]
+[ext_resource type="Script" path="res://UI/VolumeSlider.gd" id="2_sydsq"]
+[ext_resource type="Script" path="res://UI/KeybindInput.gd" id="3_ka7iy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyk6s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j24xc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r3h5l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jq8qx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xfnly"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jcb2t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtbr3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vl82s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8as3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sv650"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wyxy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7yt1y"]
+
+[sub_resource type="GDScript" id="GDScript_8e4mg"]
+resource_name = "SelectIcon"
+script/source = "extends ItemList
+
+var CurSelected : int = 0
+
+func _ready():
+	ForceSelect(0)
+
+func ForceSelect(Index : int):
+	ItemSelected(Index)
+	select(Index)
+	for i in item_count:
+		set_item_tooltip_enabled(i, false)
+
+func ItemSelected(Index):
+	set_item_icon(CurSelected, null)
+	set_item_icon(Index, preload(\"res://Textures/UIIcons/UIArrowRight.png\"))
+	CurSelected = Index
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83ea4"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7qn0h")
+MenuColour1 = Color(0, 0.431373, 0.321569, 1)
+MenuColour2 = Color(1, 0.690196, 0, 1)
+MenuColour3 = Color(0.776471, 0.533333, 0, 1)
+MenuColour4 = Color(1, 0.815686, 0.545098, 1)
+
+[node name="Main" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Main"]
+offset_top = 22.0
+offset_right = 140.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 15
+text = "Pip Boy"
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="Main"]
+offset_top = 41.0
+offset_right = 140.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Play"
+
+[node name="Settings" type="Button" parent="Main"]
+offset_top = 69.0
+offset_right = 140.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Settings"
+
+[node name="Exit" type="Button" parent="Main"]
+offset_top = 97.0
+offset_right = 140.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Exit"
+
+[node name="Pause" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Pause"]
+offset_top = 22.0
+offset_right = 140.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 15
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Pause"]
+offset_top = 41.0
+offset_right = 140.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Resume"
+
+[node name="Settings" type="Button" parent="Pause"]
+offset_top = 69.0
+offset_right = 140.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Settings"
+
+[node name="MainMenu" type="Button" parent="Pause"]
+offset_top = 97.0
+offset_right = 140.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Main Menu"
+
+[node name="SaveConfirm" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SaveConfirm"]
+offset_top = 50.0
+offset_right = 140.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 15
+text = "Save?"
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="SaveConfirm"]
+offset_top = 69.0
+offset_right = 140.0
+offset_bottom = 93.0
+alignment = 1
+
+[node name="Yes" type="Button" parent="SaveConfirm/HBox"]
+offset_left = 32.0
+offset_right = 72.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Yes"
+
+[node name="No" type="Button" parent="SaveConfirm/HBox"]
+offset_left = 76.0
+offset_right = 108.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "No"
+
+[node name="Settings" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sections" type="HBoxContainer" parent="Settings"]
+offset_right = 144.0
+offset_bottom = 7.0
+alignment = 1
+
+[node name="Audio" type="Button" parent="Settings/Sections"]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_right = 43.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 7
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uyk6s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j24xc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_r3h5l")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jq8qx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xfnly")
+toggle_mode = true
+text = "Audio"
+flat = true
+
+[node name="Video" type="Button" parent="Settings/Sections"]
+unique_name_in_owner = true
+offset_left = 47.0
+offset_right = 82.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 7
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uyk6s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jcb2t")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dtbr3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vl82s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d8as3")
+toggle_mode = true
+button_pressed = true
+text = "Video"
+flat = true
+
+[node name="Control" type="Button" parent="Settings/Sections"]
+unique_name_in_owner = true
+offset_left = 86.0
+offset_right = 135.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 7
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uyk6s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j24xc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_r3h5l")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_sv650")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8wyxy")
+toggle_mode = true
+text = "Control"
+flat = true
+
+[node name="HSep" type="HSeparator" parent="Settings"]
+offset_top = 11.0
+offset_right = 144.0
+offset_bottom = 15.0
+
+[node name="VideoSection" type="VBoxContainer" parent="Settings"]
+unique_name_in_owner = true
+visible = false
+offset_top = 19.0
+offset_right = 144.0
+offset_bottom = 117.0
+size_flags_vertical = 3
+
+[node name="ColorMode" type="ItemList" parent="Settings/VideoSection"]
+unique_name_in_owner = true
+offset_right = 144.0
+offset_bottom = 27.0
+theme_override_constants/v_separation = 1
+theme_override_constants/icon_margin = -2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7yt1y")
+auto_height = true
+item_count = 3
+item_0/text = "Original"
+item_1/text = "Light"
+item_2/text = "Color"
+script = SubResource("GDScript_8e4mg")
+
+[node name="HSep2" type="HSeparator" parent="Settings/VideoSection"]
+offset_top = 31.0
+offset_right = 144.0
+offset_bottom = 35.0
+
+[node name="FullScreen" type="CheckButton" parent="Settings/VideoSection"]
+unique_name_in_owner = true
+offset_top = 39.0
+offset_right = 144.0
+offset_bottom = 47.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_83ea4")
+text = "FullScreen"
+flat = true
+
+[node name="VSync" type="CheckButton" parent="Settings/VideoSection"]
+unique_name_in_owner = true
+offset_top = 51.0
+offset_right = 144.0
+offset_bottom = 59.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_83ea4")
+text = "V-Sync"
+flat = true
+
+[node name="ReduceEffects" type="CheckButton" parent="Settings/VideoSection"]
+unique_name_in_owner = true
+offset_top = 63.0
+offset_right = 144.0
+offset_bottom = 71.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_83ea4")
+text = "Reduce Effects"
+flat = true
+
+[node name="AudioSection" type="VBoxContainer" parent="Settings"]
+unique_name_in_owner = true
+visible = false
+offset_top = 19.0
+offset_right = 144.0
+offset_bottom = 128.0
+size_flags_vertical = 3
+
+[node name="MasterLabel" type="Label" parent="Settings/AudioSection"]
+offset_right = 144.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 8
+text = "Master - 100%"
+
+[node name="MasterSlider" type="HSlider" parent="Settings/AudioSection"]
+offset_top = 12.0
+offset_right = 144.0
+offset_bottom = 20.0
+step = 5.0
+value = 100.0
+tick_count = 9
+ticks_on_borders = true
+script = ExtResource("2_sydsq")
+Bus = "Master"
+LabelPath = NodePath("../MasterLabel")
+
+[node name="MusicLabel" type="Label" parent="Settings/AudioSection"]
+offset_top = 24.0
+offset_right = 144.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 8
+text = "Music - 100%"
+
+[node name="MusicSlider" type="HSlider" parent="Settings/AudioSection"]
+offset_top = 36.0
+offset_right = 144.0
+offset_bottom = 44.0
+step = 5.0
+value = 100.0
+tick_count = 9
+ticks_on_borders = true
+script = ExtResource("2_sydsq")
+Bus = "Music"
+LabelPath = NodePath("../MusicLabel")
+
+[node name="SFXLabel" type="Label" parent="Settings/AudioSection"]
+offset_top = 48.0
+offset_right = 144.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 8
+text = "SFX - 100%"
+
+[node name="SFXSlider" type="HSlider" parent="Settings/AudioSection"]
+offset_top = 60.0
+offset_right = 144.0
+offset_bottom = 68.0
+step = 5.0
+value = 100.0
+tick_count = 9
+ticks_on_borders = true
+script = ExtResource("2_sydsq")
+Bus = "SFX"
+LabelPath = NodePath("../SFXLabel")
+
+[node name="ControlSection" type="VBoxContainer" parent="Settings"]
+unique_name_in_owner = true
+offset_top = 19.0
+offset_right = 144.0
+offset_bottom = 95.0
+size_flags_vertical = 3
+
+[node name="UpLabel" type="Label" parent="Settings/ControlSection"]
+offset_right = 144.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 8
+text = "Up"
+
+[node name="Input" type="Label" parent="Settings/ControlSection/UpLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "\"W\""
+horizontal_alignment = 2
+script = ExtResource("3_ka7iy")
+InitialKey = "W"
+ActionName = "Up"
+
+[node name="DownLabel" type="Label" parent="Settings/ControlSection"]
+offset_top = 12.0
+offset_right = 144.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Down"
+
+[node name="Input" type="Label" parent="Settings/ControlSection/DownLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "\"S\""
+horizontal_alignment = 2
+script = ExtResource("3_ka7iy")
+InitialKey = "S"
+ActionName = "Down"
+
+[node name="LeftLabel" type="Label" parent="Settings/ControlSection"]
+offset_top = 24.0
+offset_right = 144.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 8
+text = "Left"
+
+[node name="Input" type="Label" parent="Settings/ControlSection/LeftLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "\"A\""
+horizontal_alignment = 2
+script = ExtResource("3_ka7iy")
+InitialKey = "A"
+ActionName = "Left"
+
+[node name="RightLabel" type="Label" parent="Settings/ControlSection"]
+offset_top = 36.0
+offset_right = 144.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 8
+text = "Right"
+
+[node name="Input" type="Label" parent="Settings/ControlSection/RightLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "\"D\""
+horizontal_alignment = 2
+script = ExtResource("3_ka7iy")
+InitialKey = "D"
+ActionName = "Right"
+
+[node name="HSeparator" type="HSeparator" parent="Settings/ControlSection"]
+offset_top = 48.0
+offset_right = 144.0
+offset_bottom = 52.0
+
+[node name="ALabel" type="Label" parent="Settings/ControlSection"]
+offset_top = 56.0
+offset_right = 144.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 8
+text = "A"
+
+[node name="Input" type="Label" parent="Settings/ControlSection/ALabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "\"Space\""
+horizontal_alignment = 2
+script = ExtResource("3_ka7iy")
+InitialKey = "Space"
+ActionName = "A"
+
+[node name="BLabel" type="Label" parent="Settings/ControlSection"]
+offset_top = 68.0
+offset_right = 144.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 8
+text = "B"
+
+[node name="Input" type="Label" parent="Settings/ControlSection/BLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "\"Shift\""
+horizontal_alignment = 2
+script = ExtResource("3_ka7iy")
+InitialKey = "Shift"
+ActionName = "B"
+
+[node name="HSep2" type="HSeparator" parent="Settings"]
+offset_top = 99.0
+offset_right = 144.0
+offset_bottom = 103.0
+
+[node name="BackButton" type="Button" parent="Settings"]
+offset_top = 106.743
+offset_right = 144.0
+offset_bottom = 130.0
+size_flags_vertical = 10
+text = "Back"
+
+[connection signal="pressed" from="Main/Play" to="." method="Play"]
+[connection signal="pressed" from="Main/Settings" to="." method="OpenSettings"]
+[connection signal="pressed" from="Main/Exit" to="." method="Exit"]
+[connection signal="pressed" from="Pause/Resume" to="." method="Resume"]
+[connection signal="pressed" from="Pause/Settings" to="." method="OpenSettings"]
+[connection signal="pressed" from="Pause/MainMenu" to="." method="MainMenu"]
+[connection signal="pressed" from="SaveConfirm/HBox/Yes" to="." method="SaveConfirm" binds= [true]]
+[connection signal="pressed" from="SaveConfirm/HBox/No" to="." method="SaveConfirm" binds= [false]]
+[connection signal="pressed" from="Settings/Sections/Audio" to="." method="SettingsSection" binds= [0]]
+[connection signal="pressed" from="Settings/Sections/Video" to="." method="SettingsSection" binds= [1]]
+[connection signal="pressed" from="Settings/Sections/Control" to="." method="SettingsSection" binds= [2]]
+[connection signal="item_activated" from="Settings/VideoSection/ColorMode" to="." method="SetColorMode"]
+[connection signal="item_activated" from="Settings/VideoSection/ColorMode" to="Settings/VideoSection/ColorMode" method="ItemSelected"]
+[connection signal="toggled" from="Settings/VideoSection/FullScreen" to="." method="SetFullscreen"]
+[connection signal="toggled" from="Settings/VideoSection/VSync" to="." method="SetVSync"]
+[connection signal="toggled" from="Settings/VideoSection/ReduceEffects" to="." method="SetReduceEffects"]
+[connection signal="pressed" from="Settings/BackButton" to="." method="CloseSettings"]

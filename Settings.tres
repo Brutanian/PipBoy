@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://SavedSettings.gd" id="1_g7pyv"]
+
+[resource]
+script = ExtResource("1_g7pyv")
+ColorMode = 2
+FullScreen = false
+VSync = true
+ReduceEffects = false
+InputDictionary = {
+"A": [32, 0],
+"B": [4194325, 1],
+"Down": [83, 12],
+"Left": [65, 13],
+"Right": [68, 14],
+"Up": [87, 11]
+}
+MasterVol = 100
+MusicVol = 100
+SFXVol = 100
