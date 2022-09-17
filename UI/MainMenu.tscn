@@ -111,6 +111,7 @@ theme_override_font_sizes/font_size = 8
 text = "Exit"
 
 [node name="Pause" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -156,7 +157,6 @@ theme_override_font_sizes/font_size = 8
 text = "Main Menu"
 
 [node name="SaveConfirm" type="VBoxContainer" parent="."]
-visible = false
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -167,17 +167,17 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="SaveConfirm"]
-offset_top = 50.0
+offset_top = 36.0
 offset_right = 140.0
-offset_bottom = 65.0
+offset_bottom = 51.0
 theme_override_font_sizes/font_size = 15
 text = "Save?"
 horizontal_alignment = 1
 
 [node name="HBox" type="HBoxContainer" parent="SaveConfirm"]
-offset_top = 69.0
+offset_top = 55.0
 offset_right = 140.0
-offset_bottom = 93.0
+offset_bottom = 79.0
 alignment = 1
 
 [node name="Yes" type="Button" parent="SaveConfirm/HBox"]
@@ -197,6 +197,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "No"
+
+[node name="Back" type="Button" parent="SaveConfirm"]
+offset_top = 83.0
+offset_right = 48.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 8
+text = "Back
+"
+flat = true
 
 [node name="Settings" type="VBoxContainer" parent="."]
 visible = false
@@ -529,10 +541,122 @@ offset_bottom = 103.0
 
 [node name="BackButton" type="Button" parent="Settings"]
 offset_top = 106.743
-offset_right = 144.0
-offset_bottom = 130.0
-size_flags_vertical = 10
+offset_right = 48.0
+offset_bottom = 131.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 8
 text = "Back"
+flat = true
+
+[node name="SaveFileSelect" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SaveFileSelect"]
+offset_top = 1.0
+offset_right = 140.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 15
+text = "Select
+Save File"
+horizontal_alignment = 1
+
+[node name="File1" type="Button" parent="SaveFileSelect"]
+offset_top = 35.0
+offset_right = 140.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Empty"
+
+[node name="File2" type="Button" parent="SaveFileSelect"]
+offset_top = 63.0
+offset_right = 140.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Empty"
+
+[node name="File3" type="Button" parent="SaveFileSelect"]
+offset_top = 91.0
+offset_right = 140.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Empty
+"
+
+[node name="Back" type="Button" parent="SaveFileSelect"]
+offset_top = 119.0
+offset_right = 48.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 8
+text = "Back
+"
+flat = true
+
+[node name="SaveFileOptions" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SaveFileOptions"]
+offset_top = 22.0
+offset_right = 140.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 15
+text = "File Info"
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="SaveFileOptions"]
+offset_top = 41.0
+offset_right = 140.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Play"
+
+[node name="Erase" type="Button" parent="SaveFileOptions"]
+offset_top = 69.0
+offset_right = 140.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Erase"
+
+[node name="Back" type="Button" parent="SaveFileOptions"]
+offset_top = 97.0
+offset_right = 48.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 8
+text = "Back
+"
+flat = true
 
 [connection signal="pressed" from="Main/Play" to="." method="Play"]
 [connection signal="pressed" from="Main/Settings" to="." method="OpenSettings"]
@@ -542,6 +666,7 @@ text = "Back"
 [connection signal="pressed" from="Pause/MainMenu" to="." method="MainMenu"]
 [connection signal="pressed" from="SaveConfirm/HBox/Yes" to="." method="SaveConfirm" binds= [true]]
 [connection signal="pressed" from="SaveConfirm/HBox/No" to="." method="SaveConfirm" binds= [false]]
+[connection signal="pressed" from="SaveConfirm/Back" to="." method="Back"]
 [connection signal="pressed" from="Settings/Sections/Audio" to="." method="SettingsSection" binds= [0]]
 [connection signal="pressed" from="Settings/Sections/Video" to="." method="SettingsSection" binds= [1]]
 [connection signal="pressed" from="Settings/Sections/Control" to="." method="SettingsSection" binds= [2]]
@@ -550,4 +675,11 @@ text = "Back"
 [connection signal="toggled" from="Settings/VideoSection/FullScreen" to="." method="SetFullscreen"]
 [connection signal="toggled" from="Settings/VideoSection/VSync" to="." method="SetVSync"]
 [connection signal="toggled" from="Settings/VideoSection/ReduceEffects" to="." method="SetReduceEffects"]
-[connection signal="pressed" from="Settings/BackButton" to="." method="CloseSettings"]
+[connection signal="pressed" from="Settings/BackButton" to="." method="Back"]
+[connection signal="pressed" from="SaveFileSelect/File1" to="." method="SaveFileSelect" binds= [1]]
+[connection signal="pressed" from="SaveFileSelect/File2" to="." method="SaveFileSelect" binds= [2]]
+[connection signal="pressed" from="SaveFileSelect/File3" to="." method="SaveFileSelect" binds= [3]]
+[connection signal="pressed" from="SaveFileSelect/Back" to="." method="Back"]
+[connection signal="pressed" from="SaveFileOptions/Play" to="." method="PlaySave"]
+[connection signal="pressed" from="SaveFileOptions/Erase" to="." method="EraseSave"]
+[connection signal="pressed" from="SaveFileOptions/Back" to="." method="Back"]

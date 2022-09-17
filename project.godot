@@ -9,12 +9,18 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node2D",
+"class": &"PathNode",
+"language": &"GDScript",
+"path": "res://PathNode.gd"
+}, {
 "base": "Resource",
 "class": &"SavedSettings",
 "language": &"GDScript",
-"path": "res://SavedSettings.gd"
+"path": "res://Saves/SavedSettings.gd"
 }]
 _global_script_class_icons={
+"PathNode": "",
 "SavedSettings": ""
 }
 
@@ -111,6 +117,5 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 2d/snap/snap_2d_transforms_to_pixel=true
-2d/snap/snap_2d_vertices_to_pixel=true
 textures/canvas_textures/default_texture_filter=0
 environment/default_environment="res://default_env.tres"

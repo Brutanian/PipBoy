@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-const JUMP_BUFFER_FRAMES : int = 3
+const JUMP_BUFFER_FRAMES : int = 10
 
 const MAX_SPEED = 100.0
-const ACCEL = 10.0
-const DECEL = 20.0
+const ACCEL = 400.0
+const DECEL = 800.0
 const JUMP_VELOCITY = -200.0
 
 @onready var Playback : AnimationNodeStateMachinePlayback = $StateMachine.get("parameters/playback")
@@ -44,22 +44,22 @@ func _physics_process(delta):
 		if direction:
 			Travel("Run")
 			if State == "Run":
-				velocity.x = move_toward(velocity.x, direction * MAX_SPEED, ACCEL)
+				velocity.x = move_toward(velocity.x, direction * MAX_SPEED, ACCEL * delta)
 				$Sprite.flip_h = direction < 0
 			else:
-				velocity.x = move_toward(velocity.x, 0, DECEL * 0.5)
+				velocity.x = move_toward(velocity.x, 0, DECEL * 0.5 * delta)
 		else:
 			if abs(velocity.x) > 50:
 				Travel("Slide")
 			else:
 				Travel("Idle")
-			velocity.x = move_toward(velocity.x, 0, DECEL)
+			velocity.x = move_toward(velocity.x, 0, DECEL * delta)
 	else:
 		if direction:
-			velocity.x = move_toward(velocity.x, direction * MAX_SPEED, ACCEL * 0.5)
+			velocity.x = move_toward(velocity.x, direction * MAX_SPEED, ACCEL * 0.5 * delta)
 			$Sprite.flip_h = velocity.x < 0
 		else:
-			velocity.x = move_toward(velocity.x, 0, DECEL * 0.5)
+			velocity.x = move_toward(velocity.x, 0, DECEL * 0.5 * delta)
 	
 	move_and_slide()
 

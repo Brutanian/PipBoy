@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://SavedSettings.gd" id="1_g7pyv"]
+[ext_resource type="Script" path="res://Saves/SavedSettings.gd" id="1_g7pyv"]
 
 [resource]
 script = ExtResource("1_g7pyv")

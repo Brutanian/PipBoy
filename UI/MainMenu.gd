@@ -13,22 +13,28 @@ enum {AUDIO,VIDEO,CONTROL}
 var InGame : bool = false
 var GameScene : Node
 
+var SelectedSave : int = 0
+
+var PageOpen : Control
+
 func _ready():
 	SettingsSection(VIDEO)
-	for c in get_children():
-		c.visible = false
-	$Main.visible = true
-	$Main/Play.grab_focus()
+	OpenPage($Main, 1)
 	SetPalette(0.5)
+
+func OpenPage(PageNode : Control, FocusChild : int = -1):
+	for c in get_children():
+		c.visible = c == PageNode
+	if FocusChild != -1:
+		PageNode.get_child(FocusChild).grab_focus()
+	PageOpen = PageNode
 
 func _input(event):
 	if InGame and Input.is_action_just_pressed("Start"):
 		Pause()
 
 func OpenSettings():
-	$Main.visible = false
-	$Pause.visible = false
-	$Settings.visible = true
+	OpenPage($Settings)
 	Settings.Load()
 	$%FullScreen.button_pressed = Settings.Current.FullScreen
 	$%VSync.button_pressed = Settings.Current.VSync
@@ -36,14 +42,19 @@ func OpenSettings():
 	$%ColorMode.ForceSelect(Settings.Current.ColorMode)
 	SettingsSection(VIDEO)
 
-func CloseSettings():
-	if InGame:
-		$Pause.visible = true
-	else:
-		$Main.visible = true
-		$Main/Settings.grab_focus()
-	$Settings.visible = false
-	Settings.Save()
+func Back():
+	if PageOpen == $SaveFileOptions:
+		OpenPage($SaveFileSelect, 1)
+	elif PageOpen == $SaveFileSelect:
+		OpenPage($Main, 1)
+	elif PageOpen == $SaveConfirm:
+		OpenPage($Pause, 3)
+	elif PageOpen == $Settings:
+		if InGame:
+			OpenPage($Pause, 1)
+		else:
+			OpenPage($Main, 2)
+		Settings.Save()
 
 func SettingsSection(Section : int):
 	$%VideoSection.visible = Section == VIDEO
@@ -84,15 +95,10 @@ func SetColorMode(New : int):
 	Settings.Apply()
 
 func Play():
-	var NewGame = load("res://Game.tscn").instantiate()
-	GameScene = NewGame
-	get_tree().root.add_child(GameScene)
-	visible = false
-	InGame = true
+	OpenPage($SaveFileSelect, 1)
 
 func Pause():
-	$Main.visible = false
-	$Pause.visible = true
+	OpenPage($Pause, 1)
 	visible = true
 	GameScene.process_mode = Node.PROCESS_MODE_DISABLED
 	GameScene.visible = false
@@ -105,13 +111,11 @@ func Resume():
 	ReturnPalette()
 
 func MainMenu():
-	$Pause.visible = false
-	$SaveConfirm.visible = true
+	OpenPage($SaveConfirm, 1)
 
 func SaveConfirm(Save : bool = true):
-	$SaveConfirm.visible = false
-	$Main.visible = true
-	$Pause.visible = false
+	OpenPage($Main, 1)
+	
 	GameScene.queue_free()
 	InGame = false
 
@@ -124,3 +128,18 @@ func SetPalette(FadeTime : float = 0.0):
 
 func ReturnPalette(FadeTime : float = 0.0):
 	Filter.FadePaletteToMult(SavedPalette[0],SavedPalette[1],SavedPalette[2],SavedPalette[3],FadeTime)
+
+func SaveFileSelect(Index : int = -1):
+	OpenPage($SaveFileOptions, 1)
+	SelectedSave = Index
+
+func EraseSave():
+	OpenPage($SaveFileSelect, 1)
+
+func PlaySave():
+	var NewGame = load("res://WorldMap.tscn").instantiate()
+	GameScene = NewGame
+	get_tree().root.add_child(GameScene)
+	visible = false
+	InGame = true
+

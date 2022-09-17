@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkdxy3anuwyjy"]
+
+[ext_resource type="Texture2D" uid="uid://cqynuwbym5law" path="res://Textures/Player.png" id="1_u4vug"]
+[ext_resource type="Script" path="res://PlayerMap.gd" id="2_gnia2"]
+
+[node name="PlayerMap" type="Sprite2D"]
+texture = ExtResource("1_u4vug")
+offset = Vector2(0, -4)
+hframes = 8
+vframes = 3
+script = ExtResource("2_gnia2")
+
+[node name="Camera2d" type="Camera2D" parent="."]
+current = true

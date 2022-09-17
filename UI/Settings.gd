@@ -1,5 +1,7 @@
 extends Node
 
+const SAVE_PATH : String = "res://Saves/Settings.tres"
+
 const DEFAULT_INPUT_MAP : Dictionary = {
 	"Up": [87,11],
 	"Down": [83,12],
@@ -15,11 +17,11 @@ func _ready():
 	Load()
 
 func Save():
-	ResourceSaver.save(Current, "res://Settings.tres")
+	ResourceSaver.save(Current, SAVE_PATH)
 
 func Load():
-	if File.new().file_exists("res://Settings.tres"):
-		Current = load("res://Settings.tres") as SavedSettings
+	if File.new().file_exists(SAVE_PATH):
+		Current = load(SAVE_PATH) as SavedSettings
 		print("File Exists")
 	else:
 		Current = SavedSettings.new()
