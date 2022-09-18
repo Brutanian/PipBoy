@@ -1,1 +1,6 @@
 res://WorldMap.tscn
+res://PathNode.gd
+res://LevelNode.gd
+res://Game/WorldMap/WorldMap.tscn
+res://Game/WorldMap/LevelNode.gd
+res://UI/MainMenu.tscn

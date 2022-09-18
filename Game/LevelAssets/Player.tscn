@@ -1,7 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://d1cspjdv5fh60"]
+[gd_scene load_steps=35 format=3 uid="uid://dfha8jisp64vv"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_fy1sj"]
-[ext_resource type="Texture2D" uid="uid://cqynuwbym5law" path="res://Textures/Player.png" id="2_0thbr"]
+[ext_resource type="Script" path="res://Game/LevelAssets/Player.gd" id="1_y7qan"]
+[ext_resource type="Texture2D" path="res://Textures/Player.png" id="2_k31ky"]
 
 [sub_resource type="Animation" id="Animation_pwsmq"]
 resource_name = "Fall"
@@ -260,10 +260,10 @@ radius = 3.0
 height = 8.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_fy1sj")
+script = ExtResource("1_y7qan")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_0thbr")
+texture = ExtResource("2_k31ky")
 hframes = 8
 vframes = 3
 frame = 10

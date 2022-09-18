@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ep6caqfnoo2x"]
+[gd_scene load_steps=8 format=3 uid="uid://cyocn45xt73gx"]
 
 [ext_resource type="Texture2D" uid="uid://c2id8upa45hxx" path="res://Textures/TilesPath.png" id="1_45k0f"]
-[ext_resource type="Script" path="res://PathNode.gd" id="1_nu11g"]
-[ext_resource type="Script" path="res://WorldMap.gd" id="2_im0ch"]
-[ext_resource type="PackedScene" uid="uid://bkdxy3anuwyjy" path="res://PlayerMap.tscn" id="3_re16i"]
-[ext_resource type="Script" path="res://LevelNode.gd" id="4_b3hy5"]
+[ext_resource type="Script" path="res://Game/WorldMap/PathNode.gd" id="1_nu11g"]
+[ext_resource type="Script" path="res://Game/WorldMap/WorldMap.gd" id="2_im0ch"]
+[ext_resource type="PackedScene" uid="uid://b2ayuxsvopx6l" path="res://Game/WorldMap/PlayerMap.tscn" id="3_re16i"]
+[ext_resource type="Script" path="res://Game/WorldMap/LevelNode.gd" id="4_b3hy5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1f7ae"]
 resource_name = "Path"
@@ -132,10 +132,6 @@ PathSpeed = 0.05
 [node name="Node2d3" type="Node2D" parent="."]
 position = Vector2(52, 44)
 script = ExtResource("4_b3hy5")
-Colour1 = Color(0, 0, 0, 1)
-Colour2 = Color(0, 0, 0, 1)
-Colour3 = Color(0, 0, 0, 1)
-Colour4 = Color(0, 0, 0, 1)
 NextNodePaths = []
 NodesToActivate = []
 

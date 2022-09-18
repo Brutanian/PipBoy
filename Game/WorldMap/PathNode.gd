@@ -33,8 +33,16 @@ func _ready():
 	else:
 		Uncomplete()
 
-func Unlocked():
+func InstantComplete():
 	Complete()
+	while !FinishedPath:
+		PathStep()
+
+func Unlocked(Instant : bool = false):
+	if Instant:
+		InstantComplete()
+	else:
+		Complete()
 
 func Complete():
 	Paths.clear()
@@ -63,20 +71,23 @@ func _process(delta):
 	if Completed && !FinishedPath:
 		if PathTime <= 0.0:
 			PathTime = PathSpeed
-			var Fin : bool = true
-			for I in len(NextNodes):
-				var LocalPos : Vector2 = floor(NextNodes[I].position / GRID_SIZE) - floor(position / GRID_SIZE)
-				if abs(LocalPos.x) + abs(LocalPos.y) >= PathIndex:
-					var CellPos : Vector2i = Vector2i(GetNextNodeIndex(LocalPos,PathIndex) + floor(position / GRID_SIZE))
-					get_parent().SetTile(0, CellPos, 0, 0)
-					Fin = false
-				elif NextNodes[I].has_method("Unlocked"):
-					NextNodes[I].Unlocked()
-			if Fin:
-				FinishedPath = true
-			PathIndex += 1
+			PathStep()
 		else:
 			PathTime -= delta
+
+func PathStep():
+	var Fin : bool = true
+	for I in len(NextNodes):
+		var LocalPos : Vector2 = floor(NextNodes[I].position / GRID_SIZE) - floor(position / GRID_SIZE)
+		if abs(LocalPos.x) + abs(LocalPos.y) >= PathIndex:
+			var CellPos : Vector2i = Vector2i(GetNextNodeIndex(LocalPos,PathIndex) + floor(position / GRID_SIZE))
+			get_parent().SetTile(0, CellPos, 0, 0)
+			Fin = false
+		elif NextNodes[I].has_method("Unlocked"):
+			NextNodes[I].Unlocked()
+	if Fin:
+		FinishedPath = true
+	PathIndex += 1
 
 func GetNextNodeIndex(LocalPos : Vector2, Index : int):
 	var Pos : Vector2 = Vector2()
