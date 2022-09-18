@@ -10,8 +10,9 @@ var SavedPalette : PackedColorArray
 
 enum {AUDIO,VIDEO,CONTROL}
 
-var InGame : bool = false
-var GameScene : Node
+var OnWorldMap : bool = false
+var InLevel : bool = false
+var MapScene : WorldMap
 
 var SelectedSave : int = 0
 
@@ -22,6 +23,14 @@ func _ready():
 	OpenPage($Main, 1)
 	SetPalette(0.5)
 
+func StartLevel():
+	InLevel = true
+	OnWorldMap = false
+
+func FinishLevel():
+	InLevel = false
+	OnWorldMap = true
+
 func OpenPage(PageNode : Control, FocusChild : int = -1):
 	for c in get_children():
 		c.visible = c == PageNode
@@ -30,7 +39,7 @@ func OpenPage(PageNode : Control, FocusChild : int = -1):
 	PageOpen = PageNode
 
 func _input(event):
-	if InGame and Input.is_action_just_pressed("Start"):
+	if OnWorldMap and Input.is_action_just_pressed("Start"):
 		Pause()
 
 func OpenSettings():
@@ -48,10 +57,12 @@ func Back():
 	elif PageOpen == $SaveFileSelect:
 		OpenPage($Main, 1)
 	elif PageOpen == $SaveConfirm:
-		OpenPage($Pause, 3)
+		OpenPage($MapPause, 3)
 	elif PageOpen == $Settings:
-		if InGame:
-			OpenPage($Pause, 1)
+		if OnWorldMap:
+			OpenPage($MapPause, 1)
+		elif InLevel:
+			OpenPage($LevelPause, 1)
 		else:
 			OpenPage($Main, 2)
 		Settings.Save()
@@ -98,16 +109,20 @@ func Play():
 	OpenPage($SaveFileSelect, 1)
 
 func Pause():
-	OpenPage($Pause, 1)
+	OpenPage($MapPause, 1)
 	visible = true
-	GameScene.process_mode = Node.PROCESS_MODE_DISABLED
-	GameScene.visible = false
+	MapScene.process_mode = Node.PROCESS_MODE_DISABLED
+	MapScene.visible = false
 	SetPalette()
 
 func Resume():
+	if OnWorldMap:
+		MapScene.process_mode = Node.PROCESS_MODE_ALWAYS
+		MapScene.visible = true
+	elif InLevel:
+		MapScene.CurrentLevel.process_mode = Node.PROCESS_MODE_ALWAYS
+		MapScene.CurrentLevel.visible = true
 	visible = false
-	GameScene.process_mode = Node.PROCESS_MODE_ALWAYS
-	GameScene.visible = true
 	ReturnPalette()
 
 func MainMenu():
@@ -116,8 +131,8 @@ func MainMenu():
 func SaveConfirm(Save : bool = true):
 	OpenPage($Main, 1)
 	
-	GameScene.queue_free()
-	InGame = false
+	MapScene.queue_free()
+	OnWorldMap = false
 
 func SetPalette(FadeTime : float = 0.0):
 	SavedPalette = [
@@ -138,8 +153,8 @@ func EraseSave():
 
 func PlaySave():
 	var NewGame = load("res://WorldMap.tscn").instantiate()
-	GameScene = NewGame
-	get_tree().root.add_child(GameScene)
+	MapScene = NewGame
+	get_tree().root.add_child(MapScene)
 	visible = false
-	InGame = true
+	OnWorldMap = true
 

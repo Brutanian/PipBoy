@@ -110,7 +110,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Exit"
 
-[node name="Pause" type="VBoxContainer" parent="."]
+[node name="MapPause" type="VBoxContainer" parent="."]
 visible = false
 anchors_preset = -1
 anchor_right = 1.0
@@ -121,7 +121,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Pause"]
+[node name="Label" type="Label" parent="MapPause"]
 offset_top = 22.0
 offset_right = 140.0
 offset_bottom = 37.0
@@ -129,7 +129,7 @@ theme_override_font_sizes/font_size = 15
 text = "Pause"
 horizontal_alignment = 1
 
-[node name="Resume" type="Button" parent="Pause"]
+[node name="Resume" type="Button" parent="MapPause"]
 offset_top = 41.0
 offset_right = 140.0
 offset_bottom = 65.0
@@ -138,7 +138,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Resume"
 
-[node name="Settings" type="Button" parent="Pause"]
+[node name="Settings" type="Button" parent="MapPause"]
 offset_top = 69.0
 offset_right = 140.0
 offset_bottom = 93.0
@@ -147,7 +147,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Settings"
 
-[node name="MainMenu" type="Button" parent="Pause"]
+[node name="MainMenu" type="Button" parent="MapPause"]
 offset_top = 97.0
 offset_right = 140.0
 offset_bottom = 121.0
@@ -156,7 +156,53 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Main Menu"
 
+[node name="LevelPause" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="LevelPause"]
+offset_top = 22.0
+offset_right = 140.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 15
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="LevelPause"]
+offset_top = 41.0
+offset_right = 140.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Resume"
+
+[node name="Settings" type="Button" parent="LevelPause"]
+offset_top = 69.0
+offset_right = 140.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Settings"
+
+[node name="MainMenu" type="Button" parent="LevelPause"]
+offset_top = 97.0
+offset_right = 140.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "Exit Level"
+
 [node name="SaveConfirm" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -661,9 +707,12 @@ flat = true
 [connection signal="pressed" from="Main/Play" to="." method="Play"]
 [connection signal="pressed" from="Main/Settings" to="." method="OpenSettings"]
 [connection signal="pressed" from="Main/Exit" to="." method="Exit"]
-[connection signal="pressed" from="Pause/Resume" to="." method="Resume"]
-[connection signal="pressed" from="Pause/Settings" to="." method="OpenSettings"]
-[connection signal="pressed" from="Pause/MainMenu" to="." method="MainMenu"]
+[connection signal="pressed" from="MapPause/Resume" to="." method="Resume"]
+[connection signal="pressed" from="MapPause/Settings" to="." method="OpenSettings"]
+[connection signal="pressed" from="MapPause/MainMenu" to="." method="MainMenu"]
+[connection signal="pressed" from="LevelPause/Resume" to="." method="Resume"]
+[connection signal="pressed" from="LevelPause/Settings" to="." method="OpenSettings"]
+[connection signal="pressed" from="LevelPause/MainMenu" to="." method="MainMenu"]
 [connection signal="pressed" from="SaveConfirm/HBox/Yes" to="." method="SaveConfirm" binds= [true]]
 [connection signal="pressed" from="SaveConfirm/HBox/No" to="." method="SaveConfirm" binds= [false]]
 [connection signal="pressed" from="SaveConfirm/Back" to="." method="Back"]

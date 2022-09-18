@@ -9,6 +9,16 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "TileMap",
+"class": &"LevelController",
+"language": &"GDScript",
+"path": "res://Game/Levels/LevelControl.gd"
+}, {
+"base": "PathNode",
+"class": &"LevelNode",
+"language": &"GDScript",
+"path": "res://Game/WorldMap/LevelNode.gd"
+}, {
 "base": "Node2D",
 "class": &"PathNode",
 "language": &"GDScript",
@@ -18,10 +28,18 @@ _global_script_classes=[{
 "class": &"SavedSettings",
 "language": &"GDScript",
 "path": "res://Saves/SavedSettings.gd"
+}, {
+"base": "TileMap",
+"class": &"WorldMap",
+"language": &"GDScript",
+"path": "res://Game/WorldMap/WorldMap.gd"
 }]
 _global_script_class_icons={
+"LevelController": "",
+"LevelNode": "",
 "PathNode": "",
-"SavedSettings": ""
+"SavedSettings": "",
+"WorldMap": ""
 }
 
 [application]

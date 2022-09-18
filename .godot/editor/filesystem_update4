@@ -1,6 +1,6 @@
-res://WorldMap.tscn
-res://PathNode.gd
-res://LevelNode.gd
 res://Game/WorldMap/WorldMap.tscn
-res://Game/WorldMap/LevelNode.gd
+res://Game/LevelAssets/LevelTileset.res
+res://Game/WorldMap/WorldMap.gd
+res://UI/MainMenu.gd
 res://UI/MainMenu.tscn
+res://Game/Levels/TestLevel.tscn

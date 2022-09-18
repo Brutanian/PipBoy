@@ -1,7 +1,9 @@
 @tool
 extends PathNode
+class_name LevelNode
 
 @export_group("Level Settings")
+@export var Name : String
 @export var Scene : PackedScene
 @export var ID : int = 0
 
@@ -17,4 +19,5 @@ func Unlocked(Instant : bool = false):
 func CompleteLevel():
 	Complete()
 
-
+func PlayLevel():
+	pass

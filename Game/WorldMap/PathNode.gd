@@ -10,6 +10,8 @@ const GRID_SIZE : float = 8.0
 @export_group("Pathing Settings")
 @export_enum("Default", "Completed", "Unlocked") var InitialState : int = 0
 
+@export var WorldID : int = 0
+
 @export var NextNodePaths : Array[NodePath]
 @export var NodesToActivate : Array[NodePath]
 
