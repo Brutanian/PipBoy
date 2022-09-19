@@ -1,13 +1,15 @@
 extends Sprite2D
 
 const GRID_SIZE : float = 8.0
-const MOVE_SPEED : float = 32.0
+const MOVE_SPEED : float = 100.0
 
 var AtRestingSpot : bool = true
 var GoingTo : Vector2
 var Heading : Vector2i
 
 func _ready():
+	if !SaveManager.Current.FirstTime:
+		position = SaveManager.Current.PlayerPosition
 	GoingTo = position
 
 func CanMove(Direction : Vector2i):
@@ -28,18 +30,31 @@ func Move(Direction : Vector2i):
 
 func _physics_process(delta):
 	if AtRestingSpot:
-		if Input.is_action_just_pressed("Up") && CanMove(Vector2i.UP):
+		if Input.is_action_pressed("Up") && CanMove(Vector2i.UP):
 			Move(Vector2i.UP)
-		elif Input.is_action_just_pressed("Down") && CanMove(Vector2i.DOWN):
+		elif Input.is_action_pressed("Down") && CanMove(Vector2i.DOWN):
 			Move(Vector2i.DOWN)
-		elif Input.is_action_just_pressed("Left") && CanMove(Vector2i.LEFT):
+		elif Input.is_action_pressed("Left") && CanMove(Vector2i.LEFT):
 			Move(Vector2i.LEFT)
-		elif Input.is_action_just_pressed("Right") && CanMove(Vector2i.RIGHT):
+		elif Input.is_action_pressed("Right") && CanMove(Vector2i.RIGHT):
 			Move(Vector2i.RIGHT)
+		elif Input.is_action_just_pressed("A"):
+			var Map : TileMap = get_parent() as TileMap
+			var MapPos : Vector2i = Map.local_to_map(position)
+			var LevelRef = Map.GetLevelTile(MapPos)
+			if LevelRef != null:
+				LevelRef.PlayLevel()
+		
 	elif GoingTo == position:
 		var Dirs := GetAllowedDirections()
-		if len(Dirs) != 2:
+		
+		var Map : TileMap = get_parent() as TileMap
+		var MapPos : Vector2i = Map.local_to_map(position)
+		
+		if len(Dirs) != 2 || Map.GetLevelTile(MapPos) != null:
 			AtRestingSpot = true
+			SaveManager.Current.PlayerPosition = position
+			SaveManager.Save()
 		else:
 			Dirs.erase(-Heading)
 			Move(Dirs[0])

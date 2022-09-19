@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyocn45xt73gx"]
+[gd_scene load_steps=10 format=3 uid="uid://cyocn45xt73gx"]
 
 [ext_resource type="Texture2D" uid="uid://c2id8upa45hxx" path="res://Textures/TilesPath.png" id="1_45k0f"]
 [ext_resource type="Script" path="res://Game/WorldMap/PathNode.gd" id="1_nu11g"]
 [ext_resource type="Script" path="res://Game/WorldMap/WorldMap.gd" id="2_im0ch"]
 [ext_resource type="PackedScene" uid="uid://b2ayuxsvopx6l" path="res://Game/WorldMap/PlayerMap.tscn" id="3_re16i"]
 [ext_resource type="Script" path="res://Game/WorldMap/LevelNode.gd" id="4_b3hy5"]
+[ext_resource type="Texture2D" uid="uid://bry5afvrd2j3t" path="res://Textures/MapDecor.png" id="4_egxy4"]
 [ext_resource type="PackedScene" uid="uid://b2p1jjp20io03" path="res://Game/Levels/TestLevel.tscn" id="5_xhglv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1f7ae"]
@@ -100,55 +101,152 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_1f7ae")
 
 [node name="WorldMap" type="TileMap"]
+y_sort_enabled = true
 tile_set = SubResource("TileSet_6cmps")
 cell_quadrant_size = 8
 format = 2
 layer_0/name = "Path"
-layer_0/tile_data = PackedInt32Array(786436, 0, 0, 786437, 0, 0, 786435, 0, 0, 786438, 0, 0, 786434, 0, 0, 786439, 0, 0, 786433, 0, 0, 786440, 65536, 2, 786432, 0, 2, 720904, 65536, 0, 720896, 65536, 0, 655368, 65536, 0, 655360, 65536, 0, 589832, 65536, 1, 589824, 65536, 0, 524288, 0, 1, 589831, 0, 0, 524289, 0, 0, 589830, 0, 2, 524290, 0, 0, 524294, 131072, 2, 524291, 0, 0, 458758, 65536, 0, 524292, 0, 0, 393222, 65536, 0, 524293, 0, 0, 327686, 196608, 3)
 script = ExtResource("2_im0ch")
 
 [node name="Path 0-0" type="Node2D" parent="."]
 editor_description = "Connected To:
-Path 0-1
-Path 0-2"
-position = Vector2(36, 100)
+Level 0-0 Test"
+position = Vector2(44, 196)
 z_index = 1
 script = ExtResource("1_nu11g")
-InitialState = 1
-NextNodePaths = [NodePath("../Path 0-1"), NodePath("../Path 0-2")]
-NodesToActivate = []
-PathSpeed = 0.05
+Start = true
+NextNodePaths = [NodePath("../Level 0-0 Test")]
 
 [node name="Path 0-1" type="Node2D" parent="."]
 editor_description = "Connected To:
-Level 0-0 Test
-Path 0-0"
-position = Vector2(68, 76)
+Level 0-1 Test
+Level 0-2 Test"
+position = Vector2(28, -4)
+z_index = 1
 script = ExtResource("1_nu11g")
-NextNodePaths = [NodePath("../Level 0-0 Test")]
-NodesToActivate = []
-PathSpeed = 0.05
+NextNodePaths = [NodePath("../Path 0-2")]
 
 [node name="Path 0-2" type="Node2D" parent="."]
 editor_description = "Connected To:
-Level 0-0 Test
-Path 0-0"
-position = Vector2(4, 68)
+Level 0-1 Test
+Level 0-2 Test"
+position = Vector2(28, -52)
+z_index = 1
 script = ExtResource("1_nu11g")
-NextNodePaths = [NodePath("../Level 0-0 Test")]
-NodesToActivate = []
-PathSpeed = 0.05
+NextNodePaths = []
 
 [node name="Level 0-0 Test" type="Node2D" parent="."]
 editor_description = "Connected To:
-Path 0-1
-Path 0-2"
-position = Vector2(52, 44)
+Level 0-1 Test
+Level 0-2 Test
+Path 0-0"
+position = Vector2(44, 68)
+y_sort_enabled = true
 script = ExtResource("4_b3hy5")
 Name = "Test"
 Scene = ExtResource("5_xhglv")
-NextNodePaths = []
-NodesToActivate = []
+NextNodePaths = [NodePath("../Level 0-1 Test"), NodePath("../Level 0-2 Test")]
+
+[node name="SmallPine" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(47, -35)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="BigPine" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(15, -24)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 24)
+
+[node name="BigPine2" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(-30, -34)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 24)
+
+[node name="BigPine3" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(-20, 2)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 24)
+
+[node name="BigOak" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(-23, 67)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="SmallOak" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(23, 50)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="SmallBush" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(12, -15)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="SmallBush2" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(-28, -25)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="SmallBush3" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(-50, -10)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="MedRock" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(-10, -19)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(8, 8, 16, 8)
+
+[node name="SmallRock" type="Sprite2D" parent="Level 0-0 Test"]
+visible = false
+position = Vector2(43, -15)
+texture = ExtResource("4_egxy4")
+region_enabled = true
+region_rect = Rect2(0, 8, 8, 8)
+
+[node name="Level 0-1 Test" type="Node2D" parent="."]
+editor_description = "Connected To:
+Path 0-1
+Level 0-0 Test"
+position = Vector2(76, 28)
+script = ExtResource("4_b3hy5")
+Name = "Test"
+Scene = ExtResource("5_xhglv")
+ID = 1
+YFirst = true
+NextNodePaths = [NodePath("../Path 0-1")]
+
+[node name="Level 0-2 Test" type="Node2D" parent="."]
+editor_description = "Connected To:
+Path 0-1
+Level 0-0 Test"
+position = Vector2(-20, 44)
+script = ExtResource("4_b3hy5")
+Name = "Test"
+Scene = ExtResource("5_xhglv")
+ID = 2
+YFirst = true
+NextNodePaths = [NodePath("../Path 0-1")]
 
 [node name="PlayerMap" parent="." instance=ExtResource("3_re16i")]
-position = Vector2(36, 100)
+position = Vector2(44, 196)

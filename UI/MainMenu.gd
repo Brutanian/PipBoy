@@ -53,6 +53,7 @@ func OpenSettings():
 
 func Back():
 	if PageOpen == $SaveFileOptions:
+		UpdateSaves()
 		OpenPage($SaveFileSelect, 1)
 	elif PageOpen == $SaveFileSelect:
 		OpenPage($Main, 1)
@@ -106,6 +107,7 @@ func SetColorMode(New : int):
 	Settings.Apply()
 
 func Play():
+	UpdateSaves()
 	OpenPage($SaveFileSelect, 1)
 
 func Pause():
@@ -130,7 +132,6 @@ func MainMenu():
 
 func SaveConfirm(Save : bool = true):
 	OpenPage($Main, 1)
-	
 	MapScene.queue_free()
 	OnWorldMap = false
 
@@ -146,15 +147,28 @@ func ReturnPalette(FadeTime : float = 0.0):
 
 func SaveFileSelect(Index : int = -1):
 	OpenPage($SaveFileOptions, 1)
-	SelectedSave = Index
+	SaveManager.LoadSave(Index)
 
 func EraseSave():
+	UpdateSaves()
 	OpenPage($SaveFileSelect, 1)
 
 func PlaySave():
-	var NewGame = load("res://WorldMap.tscn").instantiate()
+	var NewGame = load("res://Game/WorldMap/WorldMap.tscn").instantiate()
 	MapScene = NewGame
 	get_tree().root.add_child(MapScene)
 	visible = false
 	OnWorldMap = true
+	MapScene.LevelChange.connect(LevelChanged)
 
+func UpdateSaves():
+	$%File1.text = SaveManager.GetSaveFileStr(1)
+	$%File2.text = SaveManager.GetSaveFileStr(2)
+	$%File3.text = SaveManager.GetSaveFileStr(3)
+
+func LevelChanged(In : bool):
+	InLevel = In
+
+func GoWorldMap():
+	visible = false
+	OnWorldMap = true

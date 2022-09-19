@@ -25,6 +25,11 @@ _global_script_classes=[{
 "path": "res://Game/WorldMap/PathNode.gd"
 }, {
 "base": "Resource",
+"class": &"SaveFile",
+"language": &"GDScript",
+"path": "res://Saves/SaveFile.gd"
+}, {
+"base": "Resource",
 "class": &"SavedSettings",
 "language": &"GDScript",
 "path": "res://Saves/SavedSettings.gd"
@@ -38,6 +43,7 @@ _global_script_class_icons={
 "LevelController": "",
 "LevelNode": "",
 "PathNode": "",
+"SaveFile": "",
 "SavedSettings": "",
 "WorldMap": ""
 }
@@ -58,8 +64,9 @@ buses/default_bus_layout="res://Audio/AudioBusLayout.tres"
 [autoload]
 
 ScreenManager="*res://UI/ScreenManager.gd"
-Settings="*res://UI/Settings.gd"
+Settings="*res://Saves/Settings.gd"
 Filter="*res://UI/FilterOverlay.scn"
+SaveManager="*res://Saves/SaveManager.gd"
 
 [display]
 

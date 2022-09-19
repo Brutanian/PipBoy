@@ -51,7 +51,9 @@ func ItemSelected(Index):
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83ea4"]
 
-[node name="Menu" type="Control"]
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Menu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,7 +66,7 @@ MenuColour2 = Color(1, 0.690196, 0, 1)
 MenuColour3 = Color(0.776471, 0.533333, 0, 1)
 MenuColour4 = Color(1, 0.815686, 0.545098, 1)
 
-[node name="Main" type="VBoxContainer" parent="."]
+[node name="Main" type="VBoxContainer" parent="Menu"]
 visible = false
 anchors_preset = -1
 anchor_right = 1.0
@@ -75,7 +77,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Main"]
+[node name="Label" type="Label" parent="Menu/Main"]
 offset_top = 22.0
 offset_right = 140.0
 offset_bottom = 37.0
@@ -83,7 +85,7 @@ theme_override_font_sizes/font_size = 15
 text = "Pip Boy"
 horizontal_alignment = 1
 
-[node name="Play" type="Button" parent="Main"]
+[node name="Play" type="Button" parent="Menu/Main"]
 offset_top = 41.0
 offset_right = 140.0
 offset_bottom = 65.0
@@ -92,7 +94,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Play"
 
-[node name="Settings" type="Button" parent="Main"]
+[node name="Settings" type="Button" parent="Menu/Main"]
 offset_top = 69.0
 offset_right = 140.0
 offset_bottom = 93.0
@@ -101,7 +103,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Settings"
 
-[node name="Exit" type="Button" parent="Main"]
+[node name="Exit" type="Button" parent="Menu/Main"]
 offset_top = 97.0
 offset_right = 140.0
 offset_bottom = 121.0
@@ -110,7 +112,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Exit"
 
-[node name="MapPause" type="VBoxContainer" parent="."]
+[node name="MapPause" type="VBoxContainer" parent="Menu"]
 visible = false
 anchors_preset = -1
 anchor_right = 1.0
@@ -121,7 +123,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MapPause"]
+[node name="Label" type="Label" parent="Menu/MapPause"]
 offset_top = 22.0
 offset_right = 140.0
 offset_bottom = 37.0
@@ -129,7 +131,7 @@ theme_override_font_sizes/font_size = 15
 text = "Pause"
 horizontal_alignment = 1
 
-[node name="Resume" type="Button" parent="MapPause"]
+[node name="Resume" type="Button" parent="Menu/MapPause"]
 offset_top = 41.0
 offset_right = 140.0
 offset_bottom = 65.0
@@ -138,7 +140,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Resume"
 
-[node name="Settings" type="Button" parent="MapPause"]
+[node name="Settings" type="Button" parent="Menu/MapPause"]
 offset_top = 69.0
 offset_right = 140.0
 offset_bottom = 93.0
@@ -147,7 +149,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Settings"
 
-[node name="MainMenu" type="Button" parent="MapPause"]
+[node name="MainMenu" type="Button" parent="Menu/MapPause"]
 offset_top = 97.0
 offset_right = 140.0
 offset_bottom = 121.0
@@ -156,7 +158,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Main Menu"
 
-[node name="LevelPause" type="VBoxContainer" parent="."]
+[node name="LevelPause" type="VBoxContainer" parent="Menu"]
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -166,7 +168,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="LevelPause"]
+[node name="Label" type="Label" parent="Menu/LevelPause"]
 offset_top = 22.0
 offset_right = 140.0
 offset_bottom = 37.0
@@ -174,7 +176,7 @@ theme_override_font_sizes/font_size = 15
 text = "Pause"
 horizontal_alignment = 1
 
-[node name="Resume" type="Button" parent="LevelPause"]
+[node name="Resume" type="Button" parent="Menu/LevelPause"]
 offset_top = 41.0
 offset_right = 140.0
 offset_bottom = 65.0
@@ -183,7 +185,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Resume"
 
-[node name="Settings" type="Button" parent="LevelPause"]
+[node name="Settings" type="Button" parent="Menu/LevelPause"]
 offset_top = 69.0
 offset_right = 140.0
 offset_bottom = 93.0
@@ -192,7 +194,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Settings"
 
-[node name="MainMenu" type="Button" parent="LevelPause"]
+[node name="MainMenu" type="Button" parent="Menu/LevelPause"]
 offset_top = 97.0
 offset_right = 140.0
 offset_bottom = 121.0
@@ -201,7 +203,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Exit Level"
 
-[node name="SaveConfirm" type="VBoxContainer" parent="."]
+[node name="SaveConfirm" type="VBoxContainer" parent="Menu"]
 visible = false
 anchors_preset = -1
 anchor_right = 1.0
@@ -212,7 +214,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="SaveConfirm"]
+[node name="Label" type="Label" parent="Menu/SaveConfirm"]
 offset_top = 36.0
 offset_right = 140.0
 offset_bottom = 51.0
@@ -220,13 +222,13 @@ theme_override_font_sizes/font_size = 15
 text = "Save?"
 horizontal_alignment = 1
 
-[node name="HBox" type="HBoxContainer" parent="SaveConfirm"]
+[node name="HBox" type="HBoxContainer" parent="Menu/SaveConfirm"]
 offset_top = 55.0
 offset_right = 140.0
 offset_bottom = 79.0
 alignment = 1
 
-[node name="Yes" type="Button" parent="SaveConfirm/HBox"]
+[node name="Yes" type="Button" parent="Menu/SaveConfirm/HBox"]
 offset_left = 32.0
 offset_right = 72.0
 offset_bottom = 24.0
@@ -235,7 +237,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Yes"
 
-[node name="No" type="Button" parent="SaveConfirm/HBox"]
+[node name="No" type="Button" parent="Menu/SaveConfirm/HBox"]
 offset_left = 76.0
 offset_right = 108.0
 offset_bottom = 24.0
@@ -244,7 +246,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "No"
 
-[node name="Back" type="Button" parent="SaveConfirm"]
+[node name="Back" type="Button" parent="Menu/SaveConfirm"]
 offset_top = 83.0
 offset_right = 48.0
 offset_bottom = 107.0
@@ -256,7 +258,7 @@ text = "Back
 "
 flat = true
 
-[node name="Settings" type="VBoxContainer" parent="."]
+[node name="Settings" type="VBoxContainer" parent="Menu"]
 visible = false
 anchors_preset = -1
 anchor_right = 1.0
@@ -269,12 +271,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Sections" type="HBoxContainer" parent="Settings"]
+[node name="Sections" type="HBoxContainer" parent="Menu/Settings"]
 offset_right = 144.0
 offset_bottom = 7.0
 alignment = 1
 
-[node name="Audio" type="Button" parent="Settings/Sections"]
+[node name="Audio" type="Button" parent="Menu/Settings/Sections"]
 unique_name_in_owner = true
 offset_left = 8.0
 offset_right = 43.0
@@ -289,7 +291,7 @@ toggle_mode = true
 text = "Audio"
 flat = true
 
-[node name="Video" type="Button" parent="Settings/Sections"]
+[node name="Video" type="Button" parent="Menu/Settings/Sections"]
 unique_name_in_owner = true
 offset_left = 47.0
 offset_right = 82.0
@@ -305,7 +307,7 @@ button_pressed = true
 text = "Video"
 flat = true
 
-[node name="Control" type="Button" parent="Settings/Sections"]
+[node name="Control" type="Button" parent="Menu/Settings/Sections"]
 unique_name_in_owner = true
 offset_left = 86.0
 offset_right = 135.0
@@ -320,12 +322,12 @@ toggle_mode = true
 text = "Control"
 flat = true
 
-[node name="HSep" type="HSeparator" parent="Settings"]
+[node name="HSep" type="HSeparator" parent="Menu/Settings"]
 offset_top = 11.0
 offset_right = 144.0
 offset_bottom = 15.0
 
-[node name="VideoSection" type="VBoxContainer" parent="Settings"]
+[node name="VideoSection" type="VBoxContainer" parent="Menu/Settings"]
 unique_name_in_owner = true
 visible = false
 offset_top = 19.0
@@ -333,7 +335,7 @@ offset_right = 144.0
 offset_bottom = 117.0
 size_flags_vertical = 3
 
-[node name="ColorMode" type="ItemList" parent="Settings/VideoSection"]
+[node name="ColorMode" type="ItemList" parent="Menu/Settings/VideoSection"]
 unique_name_in_owner = true
 offset_right = 144.0
 offset_bottom = 27.0
@@ -347,12 +349,12 @@ item_1/text = "Light"
 item_2/text = "Color"
 script = SubResource("GDScript_8e4mg")
 
-[node name="HSep2" type="HSeparator" parent="Settings/VideoSection"]
+[node name="HSep2" type="HSeparator" parent="Menu/Settings/VideoSection"]
 offset_top = 31.0
 offset_right = 144.0
 offset_bottom = 35.0
 
-[node name="FullScreen" type="CheckButton" parent="Settings/VideoSection"]
+[node name="FullScreen" type="CheckButton" parent="Menu/Settings/VideoSection"]
 unique_name_in_owner = true
 offset_top = 39.0
 offset_right = 144.0
@@ -361,7 +363,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_83ea4")
 text = "FullScreen"
 flat = true
 
-[node name="VSync" type="CheckButton" parent="Settings/VideoSection"]
+[node name="VSync" type="CheckButton" parent="Menu/Settings/VideoSection"]
 unique_name_in_owner = true
 offset_top = 51.0
 offset_right = 144.0
@@ -370,7 +372,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_83ea4")
 text = "V-Sync"
 flat = true
 
-[node name="ReduceEffects" type="CheckButton" parent="Settings/VideoSection"]
+[node name="ReduceEffects" type="CheckButton" parent="Menu/Settings/VideoSection"]
 unique_name_in_owner = true
 offset_top = 63.0
 offset_right = 144.0
@@ -379,7 +381,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_83ea4")
 text = "Reduce Effects"
 flat = true
 
-[node name="AudioSection" type="VBoxContainer" parent="Settings"]
+[node name="AudioSection" type="VBoxContainer" parent="Menu/Settings"]
 unique_name_in_owner = true
 visible = false
 offset_top = 19.0
@@ -387,13 +389,13 @@ offset_right = 144.0
 offset_bottom = 128.0
 size_flags_vertical = 3
 
-[node name="MasterLabel" type="Label" parent="Settings/AudioSection"]
+[node name="MasterLabel" type="Label" parent="Menu/Settings/AudioSection"]
 offset_right = 144.0
 offset_bottom = 8.0
 theme_override_font_sizes/font_size = 8
 text = "Master - 100%"
 
-[node name="MasterSlider" type="HSlider" parent="Settings/AudioSection"]
+[node name="MasterSlider" type="HSlider" parent="Menu/Settings/AudioSection"]
 offset_top = 12.0
 offset_right = 144.0
 offset_bottom = 20.0
@@ -405,14 +407,14 @@ script = ExtResource("2_sydsq")
 Bus = "Master"
 LabelPath = NodePath("../MasterLabel")
 
-[node name="MusicLabel" type="Label" parent="Settings/AudioSection"]
+[node name="MusicLabel" type="Label" parent="Menu/Settings/AudioSection"]
 offset_top = 24.0
 offset_right = 144.0
 offset_bottom = 32.0
 theme_override_font_sizes/font_size = 8
 text = "Music - 100%"
 
-[node name="MusicSlider" type="HSlider" parent="Settings/AudioSection"]
+[node name="MusicSlider" type="HSlider" parent="Menu/Settings/AudioSection"]
 offset_top = 36.0
 offset_right = 144.0
 offset_bottom = 44.0
@@ -424,14 +426,14 @@ script = ExtResource("2_sydsq")
 Bus = "Music"
 LabelPath = NodePath("../MusicLabel")
 
-[node name="SFXLabel" type="Label" parent="Settings/AudioSection"]
+[node name="SFXLabel" type="Label" parent="Menu/Settings/AudioSection"]
 offset_top = 48.0
 offset_right = 144.0
 offset_bottom = 56.0
 theme_override_font_sizes/font_size = 8
 text = "SFX - 100%"
 
-[node name="SFXSlider" type="HSlider" parent="Settings/AudioSection"]
+[node name="SFXSlider" type="HSlider" parent="Menu/Settings/AudioSection"]
 offset_top = 60.0
 offset_right = 144.0
 offset_bottom = 68.0
@@ -443,20 +445,20 @@ script = ExtResource("2_sydsq")
 Bus = "SFX"
 LabelPath = NodePath("../SFXLabel")
 
-[node name="ControlSection" type="VBoxContainer" parent="Settings"]
+[node name="ControlSection" type="VBoxContainer" parent="Menu/Settings"]
 unique_name_in_owner = true
 offset_top = 19.0
 offset_right = 144.0
 offset_bottom = 95.0
 size_flags_vertical = 3
 
-[node name="UpLabel" type="Label" parent="Settings/ControlSection"]
+[node name="UpLabel" type="Label" parent="Menu/Settings/ControlSection"]
 offset_right = 144.0
 offset_bottom = 8.0
 theme_override_font_sizes/font_size = 8
 text = "Up"
 
-[node name="Input" type="Label" parent="Settings/ControlSection/UpLabel"]
+[node name="Input" type="Label" parent="Menu/Settings/ControlSection/UpLabel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -470,14 +472,14 @@ script = ExtResource("3_ka7iy")
 InitialKey = "W"
 ActionName = "Up"
 
-[node name="DownLabel" type="Label" parent="Settings/ControlSection"]
+[node name="DownLabel" type="Label" parent="Menu/Settings/ControlSection"]
 offset_top = 12.0
 offset_right = 144.0
 offset_bottom = 20.0
 theme_override_font_sizes/font_size = 8
 text = "Down"
 
-[node name="Input" type="Label" parent="Settings/ControlSection/DownLabel"]
+[node name="Input" type="Label" parent="Menu/Settings/ControlSection/DownLabel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -491,14 +493,14 @@ script = ExtResource("3_ka7iy")
 InitialKey = "S"
 ActionName = "Down"
 
-[node name="LeftLabel" type="Label" parent="Settings/ControlSection"]
+[node name="LeftLabel" type="Label" parent="Menu/Settings/ControlSection"]
 offset_top = 24.0
 offset_right = 144.0
 offset_bottom = 32.0
 theme_override_font_sizes/font_size = 8
 text = "Left"
 
-[node name="Input" type="Label" parent="Settings/ControlSection/LeftLabel"]
+[node name="Input" type="Label" parent="Menu/Settings/ControlSection/LeftLabel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -512,14 +514,14 @@ script = ExtResource("3_ka7iy")
 InitialKey = "A"
 ActionName = "Left"
 
-[node name="RightLabel" type="Label" parent="Settings/ControlSection"]
+[node name="RightLabel" type="Label" parent="Menu/Settings/ControlSection"]
 offset_top = 36.0
 offset_right = 144.0
 offset_bottom = 44.0
 theme_override_font_sizes/font_size = 8
 text = "Right"
 
-[node name="Input" type="Label" parent="Settings/ControlSection/RightLabel"]
+[node name="Input" type="Label" parent="Menu/Settings/ControlSection/RightLabel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -533,19 +535,19 @@ script = ExtResource("3_ka7iy")
 InitialKey = "D"
 ActionName = "Right"
 
-[node name="HSeparator" type="HSeparator" parent="Settings/ControlSection"]
+[node name="HSeparator" type="HSeparator" parent="Menu/Settings/ControlSection"]
 offset_top = 48.0
 offset_right = 144.0
 offset_bottom = 52.0
 
-[node name="ALabel" type="Label" parent="Settings/ControlSection"]
+[node name="ALabel" type="Label" parent="Menu/Settings/ControlSection"]
 offset_top = 56.0
 offset_right = 144.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 8
 text = "A"
 
-[node name="Input" type="Label" parent="Settings/ControlSection/ALabel"]
+[node name="Input" type="Label" parent="Menu/Settings/ControlSection/ALabel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -559,14 +561,14 @@ script = ExtResource("3_ka7iy")
 InitialKey = "Space"
 ActionName = "A"
 
-[node name="BLabel" type="Label" parent="Settings/ControlSection"]
+[node name="BLabel" type="Label" parent="Menu/Settings/ControlSection"]
 offset_top = 68.0
 offset_right = 144.0
 offset_bottom = 76.0
 theme_override_font_sizes/font_size = 8
 text = "B"
 
-[node name="Input" type="Label" parent="Settings/ControlSection/BLabel"]
+[node name="Input" type="Label" parent="Menu/Settings/ControlSection/BLabel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -580,12 +582,12 @@ script = ExtResource("3_ka7iy")
 InitialKey = "Shift"
 ActionName = "B"
 
-[node name="HSep2" type="HSeparator" parent="Settings"]
+[node name="HSep2" type="HSeparator" parent="Menu/Settings"]
 offset_top = 99.0
 offset_right = 144.0
 offset_bottom = 103.0
 
-[node name="BackButton" type="Button" parent="Settings"]
+[node name="BackButton" type="Button" parent="Menu/Settings"]
 offset_top = 106.743
 offset_right = 48.0
 offset_bottom = 131.0
@@ -595,7 +597,7 @@ theme_override_font_sizes/font_size = 8
 text = "Back"
 flat = true
 
-[node name="SaveFileSelect" type="VBoxContainer" parent="."]
+[node name="SaveFileSelect" type="VBoxContainer" parent="Menu"]
 visible = false
 anchors_preset = -1
 anchor_right = 1.0
@@ -606,7 +608,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="SaveFileSelect"]
+[node name="Label" type="Label" parent="Menu/SaveFileSelect"]
 offset_top = 1.0
 offset_right = 140.0
 offset_bottom = 31.0
@@ -615,7 +617,8 @@ text = "Select
 Save File"
 horizontal_alignment = 1
 
-[node name="File1" type="Button" parent="SaveFileSelect"]
+[node name="File1" type="Button" parent="Menu/SaveFileSelect"]
+unique_name_in_owner = true
 offset_top = 35.0
 offset_right = 140.0
 offset_bottom = 59.0
@@ -624,7 +627,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Empty"
 
-[node name="File2" type="Button" parent="SaveFileSelect"]
+[node name="File2" type="Button" parent="Menu/SaveFileSelect"]
+unique_name_in_owner = true
 offset_top = 63.0
 offset_right = 140.0
 offset_bottom = 87.0
@@ -633,7 +637,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Empty"
 
-[node name="File3" type="Button" parent="SaveFileSelect"]
+[node name="File3" type="Button" parent="Menu/SaveFileSelect"]
+unique_name_in_owner = true
 offset_top = 91.0
 offset_right = 140.0
 offset_bottom = 115.0
@@ -643,7 +648,7 @@ theme_override_font_sizes/font_size = 8
 text = "Empty
 "
 
-[node name="Back" type="Button" parent="SaveFileSelect"]
+[node name="Back" type="Button" parent="Menu/SaveFileSelect"]
 offset_top = 119.0
 offset_right = 48.0
 offset_bottom = 143.0
@@ -655,7 +660,7 @@ text = "Back
 "
 flat = true
 
-[node name="SaveFileOptions" type="VBoxContainer" parent="."]
+[node name="SaveFileOptions" type="VBoxContainer" parent="Menu"]
 visible = false
 anchors_preset = -1
 anchor_right = 1.0
@@ -666,7 +671,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="SaveFileOptions"]
+[node name="Label" type="Label" parent="Menu/SaveFileOptions"]
 offset_top = 22.0
 offset_right = 140.0
 offset_bottom = 37.0
@@ -674,7 +679,7 @@ theme_override_font_sizes/font_size = 15
 text = "File Info"
 horizontal_alignment = 1
 
-[node name="Play" type="Button" parent="SaveFileOptions"]
+[node name="Play" type="Button" parent="Menu/SaveFileOptions"]
 offset_top = 41.0
 offset_right = 140.0
 offset_bottom = 65.0
@@ -683,7 +688,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Play"
 
-[node name="Erase" type="Button" parent="SaveFileOptions"]
+[node name="Erase" type="Button" parent="Menu/SaveFileOptions"]
 offset_top = 69.0
 offset_right = 140.0
 offset_bottom = 93.0
@@ -692,7 +697,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Erase"
 
-[node name="Back" type="Button" parent="SaveFileOptions"]
+[node name="Back" type="Button" parent="Menu/SaveFileOptions"]
 offset_top = 97.0
 offset_right = 48.0
 offset_bottom = 121.0
@@ -704,31 +709,31 @@ text = "Back
 "
 flat = true
 
-[connection signal="pressed" from="Main/Play" to="." method="Play"]
-[connection signal="pressed" from="Main/Settings" to="." method="OpenSettings"]
-[connection signal="pressed" from="Main/Exit" to="." method="Exit"]
-[connection signal="pressed" from="MapPause/Resume" to="." method="Resume"]
-[connection signal="pressed" from="MapPause/Settings" to="." method="OpenSettings"]
-[connection signal="pressed" from="MapPause/MainMenu" to="." method="MainMenu"]
-[connection signal="pressed" from="LevelPause/Resume" to="." method="Resume"]
-[connection signal="pressed" from="LevelPause/Settings" to="." method="OpenSettings"]
-[connection signal="pressed" from="LevelPause/MainMenu" to="." method="MainMenu"]
-[connection signal="pressed" from="SaveConfirm/HBox/Yes" to="." method="SaveConfirm" binds= [true]]
-[connection signal="pressed" from="SaveConfirm/HBox/No" to="." method="SaveConfirm" binds= [false]]
-[connection signal="pressed" from="SaveConfirm/Back" to="." method="Back"]
-[connection signal="pressed" from="Settings/Sections/Audio" to="." method="SettingsSection" binds= [0]]
-[connection signal="pressed" from="Settings/Sections/Video" to="." method="SettingsSection" binds= [1]]
-[connection signal="pressed" from="Settings/Sections/Control" to="." method="SettingsSection" binds= [2]]
-[connection signal="item_activated" from="Settings/VideoSection/ColorMode" to="." method="SetColorMode"]
-[connection signal="item_activated" from="Settings/VideoSection/ColorMode" to="Settings/VideoSection/ColorMode" method="ItemSelected"]
-[connection signal="toggled" from="Settings/VideoSection/FullScreen" to="." method="SetFullscreen"]
-[connection signal="toggled" from="Settings/VideoSection/VSync" to="." method="SetVSync"]
-[connection signal="toggled" from="Settings/VideoSection/ReduceEffects" to="." method="SetReduceEffects"]
-[connection signal="pressed" from="Settings/BackButton" to="." method="Back"]
-[connection signal="pressed" from="SaveFileSelect/File1" to="." method="SaveFileSelect" binds= [1]]
-[connection signal="pressed" from="SaveFileSelect/File2" to="." method="SaveFileSelect" binds= [2]]
-[connection signal="pressed" from="SaveFileSelect/File3" to="." method="SaveFileSelect" binds= [3]]
-[connection signal="pressed" from="SaveFileSelect/Back" to="." method="Back"]
-[connection signal="pressed" from="SaveFileOptions/Play" to="." method="PlaySave"]
-[connection signal="pressed" from="SaveFileOptions/Erase" to="." method="EraseSave"]
-[connection signal="pressed" from="SaveFileOptions/Back" to="." method="Back"]
+[connection signal="pressed" from="Menu/Main/Play" to="Menu" method="Play"]
+[connection signal="pressed" from="Menu/Main/Settings" to="Menu" method="OpenSettings"]
+[connection signal="pressed" from="Menu/Main/Exit" to="Menu" method="Exit"]
+[connection signal="pressed" from="Menu/MapPause/Resume" to="Menu" method="Resume"]
+[connection signal="pressed" from="Menu/MapPause/Settings" to="Menu" method="OpenSettings"]
+[connection signal="pressed" from="Menu/MapPause/MainMenu" to="Menu" method="MainMenu"]
+[connection signal="pressed" from="Menu/LevelPause/Resume" to="Menu" method="Resume"]
+[connection signal="pressed" from="Menu/LevelPause/Settings" to="Menu" method="OpenSettings"]
+[connection signal="pressed" from="Menu/LevelPause/MainMenu" to="Menu" method="MainMenu"]
+[connection signal="pressed" from="Menu/SaveConfirm/HBox/Yes" to="Menu" method="SaveConfirm" binds= [true]]
+[connection signal="pressed" from="Menu/SaveConfirm/HBox/No" to="Menu" method="SaveConfirm" binds= [false]]
+[connection signal="pressed" from="Menu/SaveConfirm/Back" to="Menu" method="Back"]
+[connection signal="pressed" from="Menu/Settings/Sections/Audio" to="Menu" method="SettingsSection" binds= [0]]
+[connection signal="pressed" from="Menu/Settings/Sections/Video" to="Menu" method="SettingsSection" binds= [1]]
+[connection signal="pressed" from="Menu/Settings/Sections/Control" to="Menu" method="SettingsSection" binds= [2]]
+[connection signal="item_activated" from="Menu/Settings/VideoSection/ColorMode" to="Menu" method="SetColorMode"]
+[connection signal="item_activated" from="Menu/Settings/VideoSection/ColorMode" to="Menu/Settings/VideoSection/ColorMode" method="ItemSelected"]
+[connection signal="toggled" from="Menu/Settings/VideoSection/FullScreen" to="Menu" method="SetFullscreen"]
+[connection signal="toggled" from="Menu/Settings/VideoSection/VSync" to="Menu" method="SetVSync"]
+[connection signal="toggled" from="Menu/Settings/VideoSection/ReduceEffects" to="Menu" method="SetReduceEffects"]
+[connection signal="pressed" from="Menu/Settings/BackButton" to="Menu" method="Back"]
+[connection signal="pressed" from="Menu/SaveFileSelect/File1" to="Menu" method="SaveFileSelect" binds= [1]]
+[connection signal="pressed" from="Menu/SaveFileSelect/File2" to="Menu" method="SaveFileSelect" binds= [2]]
+[connection signal="pressed" from="Menu/SaveFileSelect/File3" to="Menu" method="SaveFileSelect" binds= [3]]
+[connection signal="pressed" from="Menu/SaveFileSelect/Back" to="Menu" method="Back"]
+[connection signal="pressed" from="Menu/SaveFileOptions/Play" to="Menu" method="PlaySave"]
+[connection signal="pressed" from="Menu/SaveFileOptions/Erase" to="Menu" method="EraseSave"]
+[connection signal="pressed" from="Menu/SaveFileOptions/Back" to="Menu" method="Back"]

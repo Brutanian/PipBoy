@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2ayuxsvopx6l"]
 
-[ext_resource type="Texture2D" path="res://Textures/Player.png" id="1_60jae"]
+[ext_resource type="Texture2D" uid="uid://cqynuwbym5law" path="res://Textures/Player.png" id="1_60jae"]
 [ext_resource type="Script" path="res://Game/WorldMap/PlayerMap.gd" id="2_katng"]
 
 [node name="PlayerMap" type="Sprite2D"]
@@ -10,5 +10,5 @@ hframes = 8
 vframes = 3
 script = ExtResource("2_katng")
 
-[node name="Camera2d" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 current = true

@@ -1,4 +1,5 @@
 extends Resource
+class_name SaveFile
 
 @export var Index : int = 0
 
@@ -6,19 +7,23 @@ extends Resource
 @export var CurrentDroplets : int = 0
 
 @export var UnlockedWorlds : Array
-@export var UnlockedLevels : Array
+@export var CompletedLevels : Array
+
+@export var PlayerPosition : Vector2
+
+@export var FirstTime : bool = true
 
 func _to_string():
 	return str("File: ",Index,"\nW: ",WorldCount()," D: ",TotalDroplets)
 
-func IsLevelUnlocked(LevelID : int):
-	return LevelID in UnlockedLevels
+func IsLevelComplete(LevelID : int):
+	return LevelID in CompletedLevels
 
 func IsWorldUnlocked(WorldID : int):
 	return WorldID in UnlockedWorlds
 
-func UnlockLevel(LevelID : int):
-	UnlockedLevels.append(LevelID)
+func CompleteLevel(LevelID : int):
+	CompletedLevels.append(LevelID)
 	CurrentDroplets -= 1
 
 func UnlockWorld(WorldID : int):
@@ -29,7 +34,7 @@ func AddDroplet():
 	CurrentDroplets += 1
 
 func LevelCount():
-	return len(UnlockedLevels)
+	return len(CompletedLevels)
 
 func WorldCount():
 	return len(UnlockedWorlds)

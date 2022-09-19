@@ -6,13 +6,33 @@ class_name WorldMap
 
 var CurrentLevel : Node2D
 
+var LevelNodes : Dictionary
+
+signal LevelChange()
+
 func _ready():
 	clear()
+	if !Engine.is_editor_hint():
+		for c in get_children():
+			if c is LevelNode:
+				if SaveManager.Current.IsLevelComplete(c.ID):
+					c.InstantComplete()
+			elif c is PathNode:
+				if c.Start:
+					c.Unlock(!SaveManager.Current.FirstTime)
+		SaveManager.Current.FirstTime = false
+
+func AddLevelTile(Position : Vector2i, NodeRef : LevelNode):
+	LevelNodes[Position] = NodeRef
+
+func GetLevelTile(Position : Vector2i):
+	return LevelNodes.get(Position, null)
 
 func GetTile(Layer : int, Position : Vector2i) -> int:
-	var Data = get_cell_tile_data(Layer, Position)
-	if Data:
-		return get_cell_tile_data(Layer, Position).terrain
+	if Position in get_used_cells(Layer):
+		var Data = get_cell_tile_data(Layer, Position)
+		if Data:
+			return get_cell_tile_data(Layer, Position).terrain
 	return -1
 
 func SetTile(Layer : int, Position : Vector2i, TerrainIndex : int, TileIndex : int):
@@ -62,19 +82,17 @@ func AutoNameNodes():
 				var NN = c.get_node(i)
 				NN.editor_description += str("\n", c.name)
 
-func LevelStarted():
+func StartedLevel(MapNode : LevelNode, LevelControl : LevelController):
 	visible = false
 	process_mode = Node.PROCESS_MODE_DISABLED
+	CurrentLevel = LevelControl
+	LevelControl.Lost.connect(FinishedLevel)
+	LevelControl.Complete.connect(FinishedLevel)
+	LevelChange.emit(true)
 
-func LevelFinished():
-	visible = false
+func FinishedLevel():
+	visible = true
 	process_mode = Node.PROCESS_MODE_INHERIT
-
-func PlayLevel(LevelScene : PackedScene):
-	var NewLevel = LevelScene.instantiate()
-	get_tree().root.add_child(NewLevel)
-	CurrentLevel = NewLevel
-	visible = false
-
-func FinishLevel():
-	pass
+	CurrentLevel = null
+	LevelChange.emit(false)
+	$PlayerMap/Camera.current = true

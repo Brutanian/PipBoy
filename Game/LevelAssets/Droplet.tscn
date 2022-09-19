@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://4i76wrrr1n3a"]
+
+[ext_resource type="Script" path="res://Game/LevelAssets/Droplet.gd" id="1_lun57"]
+[ext_resource type="Texture2D" uid="uid://b6hg14tnydfx8" path="res://Textures/ObjectIcons.png" id="1_tdx4e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yo3ft"]
+radius = 7.0
+
+[node name="Droplet" type="Area2D"]
+monitorable = false
+script = ExtResource("1_lun57")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_tdx4e")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 16)
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yo3ft")
+
+[connection signal="body_entered" from="." to="." method="BodyEntered"]
