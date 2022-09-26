@@ -250,7 +250,7 @@ graph_offset = Vector2(26, -179)
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_jo42m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6q8o8"]
-radius = 60.0
+radius = 100.0
 
 [node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4

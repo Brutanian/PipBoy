@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Game/LevelAssets/Roller.gd" id="1_qsa1v"]
+[ext_resource type="Texture2D" uid="uid://b11mtc3j3c8h8" path="res://Textures/Rollers.png" id="2_nqk58"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_khl4d"]
+radius = 15.0333
+
+[node name="Boulder" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_qsa1v")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nqk58")
+region_enabled = true
+region_rect = Rect2(32, 0, 64, 64)
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_khl4d")
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="ColliderPoly" type="CollisionPolygon2D" parent="Area"]
+polygon = PackedVector2Array(-14, -6, -16, 0, -9, 16, 9, 16, 16, 0, 14, -6)
+
+[node name="Standable" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="ColliderPoly" type="CollisionPolygon2D" parent="Standable"]
+polygon = PackedVector2Array(-7, -14, 7, -14, 12, -11, 15, -6, -15, -6, -12, -11)
+
+[node name="GroundParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 16)
+amount = 10
+lifetime = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(4, 0)
+direction = Vector2(0, -1)
+gravity = Vector2(0, -5)
+initial_velocity_max = 10.0
+scale_amount_max = 2.0
+
+[connection signal="body_entered" from="Area" to="." method="BodyEntered"]

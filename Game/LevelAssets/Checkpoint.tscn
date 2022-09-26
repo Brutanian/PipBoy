@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmaekhy4ba1bb"]
 
 [ext_resource type="Script" path="res://Game/LevelAssets/Checkpoint.gd" id="1_x6rqu"]
-[ext_resource type="Texture2D" path="res://Textures/Checkpoint.png" id="2_7uc7h"]
+[ext_resource type="Texture2D" uid="uid://c0m56d5drldgb" path="res://Textures/Checkpoint.png" id="2_7uc7h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_47i2f"]
 

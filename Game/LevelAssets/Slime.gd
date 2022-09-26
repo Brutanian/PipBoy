@@ -10,6 +10,7 @@ var Direction : float = 0
 var TargetPosition : Vector2
 
 var Dead : bool = false
+var Disabled : bool = true
 
 var Spawn : Vector2
 
@@ -23,7 +24,7 @@ func DeferredReady():
 	Spawn = position
 
 func _physics_process(delta):
-	if Dead:
+	if Dead || Disabled:
 		velocity -= Vector2(velocity.x,-100 * delta)
 	else:
 		var State : String = Playback.get_current_node()
@@ -70,6 +71,7 @@ func PlayerEntered(body):
 	if body.is_in_group("Player"):
 		Player = body
 		InRange = true
+		Disabled = false
 
 func PlayerExited(body):
 	if body.is_in_group("Player"):
@@ -84,8 +86,9 @@ func MoveTimer():
 	if !(InRange && InSight):
 		TargetPosition = position + Vector2(randf_range(-48,48),randf_range(0,32))
 
-func Stomp(_By):
+func Flatten(_By):
 	Die()
+	return true
 
 func Flip(_By):
 	Die()
@@ -119,5 +122,5 @@ func Respawn():
 	TargetPosition = position
 	if Dead:
 		Dead = false
+		Disabled = true
 		Playback.start("Idle")
-		add_to_group("Enemy")

@@ -31,6 +31,7 @@ signal GotCheckpoint()
 
 func _ready():
 	call_deferred("DeferredReady")
+	$UnrootRay.enabled = false
 
 func DeferredReady():
 	get_parent().call_deferred("SetPlayer",self)
@@ -99,7 +100,7 @@ func _physics_process(delta):
 				if abs(velocity.x) > 50:
 					Travel("Slide")
 				else:
-					if Input.is_action_pressed("Down"):
+					if Input.is_action_pressed("Down") && !$RootBlock.is_colliding():
 						Travel("Root")
 					else:
 						Travel("Idle")
@@ -132,10 +133,13 @@ func _physics_process(delta):
 			var Collision = get_slide_collision(i)
 			var Collider = Collision.get_collider()
 			
-			if Collision.get_position().y > position.y + 3.5:
-				if Collider.has_method("Stomp"):
-					Collider.Stomp(self)
-					velocity.y = min(JUMP_VELOCITY, velocity.y - JUMP_VELOCITY)
+			if Collision.get_position().y > position.y + 3:
+				if Collider.has_method("Flatten"):
+					if Collider.Flatten(self):
+						velocity.y = min(JUMP_VELOCITY, velocity.y - JUMP_VELOCITY)
+					else:  
+						if Collider.is_in_group("Enemy") && !Invincible:
+							Kill()
 			
 			elif Collider.is_in_group("Enemy") && !Invincible:
 				Kill()
@@ -149,6 +153,9 @@ func Freeze():
 func Kill():
 	Freeze()
 	Filter.DitherOut(KillTrig)
+
+func Flatten(_By):
+	Kill()
 
 func KillTrig():
 	if Checkpoint != null:

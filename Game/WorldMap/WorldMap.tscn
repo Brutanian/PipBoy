@@ -1,13 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://tgd6mgxpuo5r"]
+[gd_scene load_steps=25 format=3 uid="uid://tgd6mgxpuo5r"]
 
 [ext_resource type="Texture2D" uid="uid://c2id8upa45hxx" path="res://Textures/TilesPath.png" id="1_45k0f"]
 [ext_resource type="Script" path="res://Game/WorldMap/PathNode.gd" id="1_nu11g"]
 [ext_resource type="Script" path="res://Game/WorldMap/WorldMap.gd" id="2_im0ch"]
 [ext_resource type="Script" path="res://Game/WorldMap/LevelNode.gd" id="4_b3hy5"]
 [ext_resource type="Texture2D" uid="uid://bry5afvrd2j3t" path="res://Textures/MapDecor.png" id="4_egxy4"]
+[ext_resource type="PackedScene" uid="uid://c5ysleellu8yu" path="res://Game/Levels/Level4.tscn" id="5_3n0v2"]
 [ext_resource type="PackedScene" uid="uid://b2p1jjp20io03" path="res://Game/Levels/Level1.tscn" id="5_xhglv"]
 [ext_resource type="Texture2D" uid="uid://cqynuwbym5law" path="res://Textures/Player.png" id="7_ah1a2"]
+[ext_resource type="PackedScene" uid="uid://d3kfncjry0i1s" path="res://Game/Levels/Level2.tscn" id="7_stqh3"]
 [ext_resource type="Script" path="res://Game/WorldMap/PlayerMap.gd" id="8_k2wbg"]
+[ext_resource type="PackedScene" uid="uid://56n3nulkibv2" path="res://Game/Levels/Level3.tscn" id="9_v3c6s"]
 [ext_resource type="AudioStream" uid="uid://qq1wk8rr3l5g" path="res://Audio/Music/MapCheerful.wav" id="10_7ja3k"]
 [ext_resource type="AudioStream" uid="uid://cb4c563bhihw0" path="res://Audio/Music/LevelCheerful.wav" id="10_c2pdm"]
 [ext_resource type="Script" path="res://Game/WorldMap/AreaSetting.gd" id="10_hdkko"]
@@ -120,6 +123,40 @@ terrain_set_0/terrain_0/name = "Path"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_1f7ae")
 
+[sub_resource type="Animation" id="Animation_wqfly"]
+resource_name = "Down"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_p6esq"]
+resource_name = "Idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_xphhc"]
 resource_name = "Left"
 length = 0.4
@@ -135,6 +172,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2i(2, 5), Vector2i(3, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_dvnav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_iqtp1"]
@@ -171,55 +223,6 @@ tracks/0/keys = {
 "values": [Vector2i(2, 4), Vector2i(3, 4)]
 }
 
-[sub_resource type="Animation" id="Animation_wqfly"]
-resource_name = "Down"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(0, 4), Vector2i(1, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_p6esq"]
-resource_name = "Idle"
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_dvnav"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_05pi3"]
 _data = {
 "Down": SubResource("Animation_wqfly"),
@@ -247,7 +250,7 @@ position = Vector2(44, 196)
 z_index = 1
 script = ExtResource("1_nu11g")
 Start = true
-NextNodePaths = [NodePath("../Level PW-0 Test")]
+NextNodePaths = [NodePath("../Level PW-1 The Slimy Woods")]
 
 [node name="Path PW-1" type="Node2D" parent="."]
 editor_description = "Connected To:
@@ -257,155 +260,169 @@ Level PW-2 Test"
 position = Vector2(28, -4)
 z_index = 1
 script = ExtResource("1_nu11g")
-NextNodePaths = [NodePath("../Path PW-2")]
+NextNodePaths = [NodePath("../Level PW-0 Finale")]
 
-[node name="Path PW-2" type="Node2D" parent="."]
+[node name="Level PW-0 Finale" type="Node2D" parent="."]
 editor_description = "Connected To:
 Path PW-1"
 position = Vector2(28, -52)
 z_index = 1
-script = ExtResource("1_nu11g")
-NextNodePaths = []
+script = ExtResource("4_b3hy5")
+Name = "Finale"
+Scene = ExtResource("5_3n0v2")
+Colour1 = Color(0.32549, 0.231373, 0.447059, 1)
+Colour2 = Color(0.815686, 0.639216, 1, 1)
+Colour3 = Color(0.929412, 0.231373, 0.317647, 1)
+Colour4 = Color(0.694118, 0.298039, 1, 1)
 
-[node name="Level PW-0 Test" type="Node2D" parent="."]
+[node name="Level PW-1 The Slimy Woods" type="Node2D" parent="."]
 editor_description = "Connected To:
 Level PW-1 Test
 Level PW-2 Test
 Path PW-0"
 position = Vector2(44, 68)
 script = ExtResource("4_b3hy5")
-Name = "Test"
+Name = "Slimy Woods"
 Scene = ExtResource("5_xhglv")
+ID = 1
 Colour1 = Color(0, 0.294118, 0.207843, 1)
 Colour2 = Color(0.301961, 1, 0.780392, 1)
 Colour3 = Color(1, 0.298039, 0.160784, 1)
 Colour4 = Color(0, 0.705882, 0.513726, 1)
-NextNodePaths = [NodePath("../Level PW-1 Test"), NodePath("../Level PW-2 Test")]
+NextNodePaths = [NodePath("../Level PW-2 Fall Cliffs"), NodePath("../Level PW-3 Shroom Forest")]
 
-[node name="SmallPine" type="Sprite2D" parent="Level PW-0 Test"]
+[node name="SmallPine" type="Sprite2D" parent="Level PW-1 The Slimy Woods"]
 position = Vector2(47, -35)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(0, 0, 8, 8)
 
-[node name="BigPine" type="Sprite2D" parent="Level PW-0 Test"]
+[node name="BigPine" type="Sprite2D" parent="Level PW-1 The Slimy Woods"]
 position = Vector2(15, -24)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 24)
 
-[node name="BigPine2" type="Sprite2D" parent="Level PW-0 Test"]
+[node name="BigPine2" type="Sprite2D" parent="Level PW-1 The Slimy Woods"]
 position = Vector2(-30, -34)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 24)
 
-[node name="BigPine3" type="Sprite2D" parent="Level PW-0 Test"]
+[node name="BigPine3" type="Sprite2D" parent="Level PW-1 The Slimy Woods"]
 position = Vector2(-20, 2)
 z_index = 1
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 24)
 
-[node name="SmallBush" type="Sprite2D" parent="Level PW-0 Test"]
+[node name="SmallBush" type="Sprite2D" parent="Level PW-1 The Slimy Woods"]
 position = Vector2(12, -15)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 
-[node name="SmallBush2" type="Sprite2D" parent="Level PW-0 Test"]
+[node name="SmallBush2" type="Sprite2D" parent="Level PW-1 The Slimy Woods"]
 position = Vector2(-28, -25)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 
-[node name="MedRock" type="Sprite2D" parent="Level PW-0 Test"]
+[node name="MedRock" type="Sprite2D" parent="Level PW-1 The Slimy Woods"]
 position = Vector2(-10, -19)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(8, 8, 16, 8)
 
-[node name="SmallRock" type="Sprite2D" parent="Level PW-0 Test"]
+[node name="SmallRock" type="Sprite2D" parent="Level PW-1 The Slimy Woods"]
 position = Vector2(43, -15)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(0, 8, 8, 8)
 
-[node name="Level PW-1 Test" type="Node2D" parent="."]
+[node name="Level PW-2 Fall Cliffs" type="Node2D" parent="."]
 editor_description = "Connected To:
 Path PW-1
 Level PW-0 Test"
 position = Vector2(76, 28)
 script = ExtResource("4_b3hy5")
-Name = "Test"
-Scene = ExtResource("5_xhglv")
-ID = 1
+Name = "Fall Cliffs"
+Scene = ExtResource("7_stqh3")
+ID = 2
+Colour1 = Color(0.423529, 0.27451, 0.00784314, 1)
+Colour2 = Color(0.87451, 0.662745, 0.396078, 1)
+Colour3 = Color(0.835294, 0.384314, 0.160784, 1)
+Colour4 = Color(0.647059, 0.478431, 0.25098, 1)
 YFirst = true
 NextNodePaths = [NodePath("../Path PW-1")]
 
-[node name="Level PW-2 Test" type="Node2D" parent="."]
+[node name="Level PW-3 Shroom Forest" type="Node2D" parent="."]
 editor_description = "Connected To:
 Path PW-1
 Level PW-0 Test"
 position = Vector2(-20, 44)
 script = ExtResource("4_b3hy5")
-Name = "Test"
-Scene = ExtResource("5_xhglv")
-ID = 2
+Name = "Shroom Forest"
+Scene = ExtResource("9_v3c6s")
+ID = 3
+Colour1 = Color(0, 0.27451, 0.34902, 1)
+Colour2 = Color(0, 0.929412, 0.929412, 1)
+Colour3 = Color(1, 0.298039, 0.160784, 1)
+Colour4 = Color(0, 0.572549, 0.72549, 1)
 YFirst = true
 NextNodePaths = [NodePath("../Path PW-1")]
 
-[node name="SmallPine2" type="Sprite2D" parent="Level PW-2 Test"]
+[node name="SmallPine2" type="Sprite2D" parent="Level PW-3 Shroom Forest"]
 position = Vector2(-13, -47)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(0, 0, 8, 8)
 
-[node name="BigPine4" type="Sprite2D" parent="Level PW-2 Test"]
+[node name="BigPine4" type="Sprite2D" parent="Level PW-3 Shroom Forest"]
 position = Vector2(-21, -23)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 24)
 
-[node name="BigPine5" type="Sprite2D" parent="Level PW-2 Test"]
+[node name="BigPine5" type="Sprite2D" parent="Level PW-3 Shroom Forest"]
 position = Vector2(22, -39)
 z_index = 1
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 24)
 
-[node name="BigPine6" type="Sprite2D" parent="Level PW-2 Test"]
+[node name="BigPine6" type="Sprite2D" parent="Level PW-3 Shroom Forest"]
 position = Vector2(7, -71)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 24)
 
-[node name="SmallBush3" type="Sprite2D" parent="Level PW-2 Test"]
+[node name="SmallBush3" type="Sprite2D" parent="Level PW-3 Shroom Forest"]
 position = Vector2(14, 14)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 
-[node name="SmallBush4" type="Sprite2D" parent="Level PW-2 Test"]
+[node name="SmallBush4" type="Sprite2D" parent="Level PW-3 Shroom Forest"]
 position = Vector2(-25, -14)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 
-[node name="SmallBush5" type="Sprite2D" parent="Level PW-2 Test"]
+[node name="SmallBush5" type="Sprite2D" parent="Level PW-3 Shroom Forest"]
 position = Vector2(38, -49)
 z_index = 1
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 
-[node name="MedRock2" type="Sprite2D" parent="Level PW-2 Test"]
+[node name="MedRock2" type="Sprite2D" parent="Level PW-3 Shroom Forest"]
 position = Vector2(-22, 3)
 texture = ExtResource("4_egxy4")
 region_enabled = true
 region_rect = Rect2(8, 8, 16, 8)
 
-[node name="SmallRock2" type="Sprite2D" parent="Level PW-2 Test"]
+[node name="SmallRock2" type="Sprite2D" parent="Level PW-3 Shroom Forest"]
 position = Vector2(-29, 4)
 texture = ExtResource("4_egxy4")
 region_enabled = true
@@ -455,7 +472,6 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 
 [node name="Panel" type="Panel" parent="MapUI/LevelLabel"]
 show_behind_parent = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -474,7 +490,6 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 
 [node name="Panel" type="Panel" parent="MapUI/AreaLabel"]
 show_behind_parent = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

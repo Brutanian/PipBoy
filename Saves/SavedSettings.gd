@@ -1,8 +1,8 @@
 extends Resource
 class_name SavedSettings
 
-@export var ColorMode : ScreenManager.Mode = 1
-@export var FullScreen : bool = true
+@export var ColorMode : ScreenManager.Mode = 2
+@export var FullScreen : bool = false
 @export var VSync : bool = true
 @export var ReduceEffects : bool = false
 
