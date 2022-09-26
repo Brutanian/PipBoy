@@ -24,11 +24,21 @@ func GetAllowedDirections() -> Array[Vector2i]:
 	return Dirs
 
 func Move(Direction : Vector2i):
+	if Direction != Heading:
+		match Direction:
+			Vector2i.UP:
+				$Animator.play("Up")
+			Vector2i.DOWN:
+				$Animator.play("Down")
+			Vector2i.LEFT:
+				$Animator.play("Left")
+			Vector2i.RIGHT:
+				$Animator.play("Right")
 	Heading = Direction
 	AtRestingSpot = false
 	GoingTo += Direction * GRID_SIZE
 
-func _physics_process(delta):
+func _process(delta):
 	if AtRestingSpot:
 		if Input.is_action_pressed("Up") && CanMove(Vector2i.UP):
 			Move(Vector2i.UP)
@@ -53,8 +63,8 @@ func _physics_process(delta):
 		
 		if len(Dirs) != 2 || Map.GetLevelTile(MapPos) != null:
 			AtRestingSpot = true
+			$Animator.play("Idle")
 			SaveManager.Current.PlayerPosition = position
-			SaveManager.Save()
 		else:
 			Dirs.erase(-Heading)
 			Move(Dirs[0])

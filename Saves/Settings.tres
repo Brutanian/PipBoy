@@ -16,6 +16,6 @@ InputDictionary = {
 "Right": [68, 14],
 "Up": [87, 11]
 }
-MasterVol = 100
+MasterVol = 70
 MusicVol = 100
 SFXVol = 100

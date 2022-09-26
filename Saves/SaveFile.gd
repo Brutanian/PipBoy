@@ -14,7 +14,7 @@ class_name SaveFile
 @export var FirstTime : bool = true
 
 func _to_string():
-	return str("File: ",Index,"\nW: ",WorldCount()," D: ",TotalDroplets)
+	return str("File:",Index,",W:",WorldCount(),",D:",TotalDroplets)
 
 func IsLevelComplete(LevelID : int):
 	return LevelID in CompletedLevels

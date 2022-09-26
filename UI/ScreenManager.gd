@@ -8,6 +8,8 @@ enum Palette {COLOUR1,COLOUR2,COLOUR3,COLOUR4,TINT}
 
 var CurrentMode : Mode = Mode.COLOR
 
+var FunctionToCall : Callable
+
 class Fade:
 	var Index : Palette
 	var FromColor : Color
@@ -67,6 +69,12 @@ func SetMode(NewMode : Mode):
 		Mode.COLOR:
 			FadeTo(Palette.TINT, Color.WHITE, 0.5)
 
+func CompleteNow():
+	for f in Fades:
+		if f:
+			SetPaletteColour(f.Index, f.ToColor)
+			Fades[f.Index] = null
+
 func _ready():
 	SetPaletteColour(0, Color.BLACK)
 	SetPaletteColour(1, Color.BLACK)
@@ -84,4 +92,15 @@ func _process(delta):
 				FilterMaterial.set_shader_parameter("TintAmount", Amount)
 			if f.CurTime >= f.FadeTime:
 				Fades[f.Index] = null
-	
+
+func DitherOut(Call : Callable = Callable()):
+	FunctionToCall = Call
+	$AnimationPlayer.play("Fade",-1,1.5)
+
+func DitherIn(Call : Callable = Callable()):
+	FunctionToCall = Call
+	$AnimationPlayer.play("Fade",-1,-2, true)
+
+func DitherTrigger(_AnimName):
+	if FunctionToCall != null:
+		FunctionToCall.call()

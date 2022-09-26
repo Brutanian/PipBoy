@@ -1,22 +1,15 @@
-@tool
 extends Node2D
 class_name PathNode
 
 const GRID_SIZE : float = 8.0
 
-@export_group("Editor Testing")
-@export var CompleteTest : bool = false
-
 @export_group("Pathing Settings")
 @export var Start : bool = false
-
 @export var YFirst : bool = false
 
 @export var NextNodePaths : Array[NodePath]
 
 @export var PathSpeed : float = 0.05
-
-@export var WorldID : int = 0
 
 var Completed : bool = false
 var Unlocked : bool = false
@@ -39,7 +32,7 @@ func InstantComplete():
 	DecorVis(true)
 	Complete()
 	while !FinishedPath:
-		PathStep()
+		PathStep(true)
 
 func Unlock(Instant : bool = false):
 	if Instant:
@@ -51,6 +44,7 @@ func Unlock(Instant : bool = false):
 
 func DecorVis(Instant : bool = false):
 	for c in get_children():
+		c.scale.x = 1 if randf() > 0.5 else -1
 		if Instant:
 			c.visible = true
 		else:
@@ -66,6 +60,7 @@ func Complete():
 		NextNodes.append(get_node(i))
 		Paths.append([])
 	Completed = true
+	get_parent().DisablePlayer()
 
 func Uncomplete():
 	Paths.clear()
@@ -75,12 +70,7 @@ func Uncomplete():
 		c.visible = false
 
 func _process(delta):
-	if Engine.is_editor_hint():
-		position = (floor(position / GRID_SIZE) + Vector2(0.5,0.5)) * GRID_SIZE
-		if CompleteTest:
-			CompleteTest = false
-			get_parent().clear()
-			Complete()
+	position = (floor(position / GRID_SIZE) + Vector2(0.5,0.5)) * GRID_SIZE
 	
 	if Completed && !FinishedPath:
 		if PathTime <= 0.0:
@@ -89,7 +79,7 @@ func _process(delta):
 		else:
 			PathTime -= delta
 
-func PathStep():
+func PathStep(Instant : bool = false):
 	var Fin : bool = true
 	for I in len(NextNodes):
 		var LocalPos : Vector2 = floor(NextNodes[I].position / GRID_SIZE) - floor(position / GRID_SIZE)
@@ -98,8 +88,9 @@ func PathStep():
 			get_parent().SetTile(0, CellPos, 0, 0)
 			Fin = false
 		elif NextNodes[I].has_method("Unlock"):
-			NextNodes[I].Unlock()
+			NextNodes[I].Unlock(Instant)
 	if Fin:
+		get_parent().EnablePlayer()
 		FinishedPath = true
 	PathIndex += 1
 

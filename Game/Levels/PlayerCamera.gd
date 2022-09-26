@@ -10,14 +10,20 @@ var Player : CharacterBody2D
 func SetPlayer(New : CharacterBody2D):
 	Player = New
 	position = ClampedPos(Player.position)
+	Player.Die.connect(TP)
 
 func _process(delta):
 	if Engine.is_editor_hint():
 		CamLimit = Vector2i(max(CamLimit.x, 20),max(CamLimit.y, 18))
 		queue_redraw()
-	else:
+
+func _physics_process(delta):
+	if !Engine.is_editor_hint():
 		if Player:
 			position = lerp(position, ClampedPos(Player.position), 0.1)
+
+func TP():
+	position = ClampedPos(Player.position)
 
 func ClampedPos(Position : Vector2):
 	var Limit = CamLimit * 8

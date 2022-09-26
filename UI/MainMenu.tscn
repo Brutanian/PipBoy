@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c85wfs03rh6dc"]
+[gd_scene load_steps=18 format=3 uid="uid://brkvwh87sujwl"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_7qn0h"]
 [ext_resource type="Script" path="res://UI/VolumeSlider.gd" id="2_sydsq"]
@@ -194,7 +194,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Settings"
 
-[node name="MainMenu" type="Button" parent="Menu/LevelPause"]
+[node name="ExitLevel" type="Button" parent="Menu/LevelPause"]
 offset_top = 97.0
 offset_right = 140.0
 offset_bottom = 121.0
@@ -709,7 +709,10 @@ text = "Back
 "
 flat = true
 
-[connection signal="pressed" from="Menu/Main/Play" to="Menu" method="Play"]
+[node name="MenuAudio" type="AudioStreamPlayer" parent="Menu"]
+bus = &"SFX"
+
+[connection signal="pressed" from="Menu/Main/Play" to="Menu" method="SaveFiles"]
 [connection signal="pressed" from="Menu/Main/Settings" to="Menu" method="OpenSettings"]
 [connection signal="pressed" from="Menu/Main/Exit" to="Menu" method="Exit"]
 [connection signal="pressed" from="Menu/MapPause/Resume" to="Menu" method="Resume"]
@@ -717,7 +720,7 @@ flat = true
 [connection signal="pressed" from="Menu/MapPause/MainMenu" to="Menu" method="MainMenu"]
 [connection signal="pressed" from="Menu/LevelPause/Resume" to="Menu" method="Resume"]
 [connection signal="pressed" from="Menu/LevelPause/Settings" to="Menu" method="OpenSettings"]
-[connection signal="pressed" from="Menu/LevelPause/MainMenu" to="Menu" method="MainMenu"]
+[connection signal="pressed" from="Menu/LevelPause/ExitLevel" to="Menu" method="GoWorldMap"]
 [connection signal="pressed" from="Menu/SaveConfirm/HBox/Yes" to="Menu" method="SaveConfirm" binds= [true]]
 [connection signal="pressed" from="Menu/SaveConfirm/HBox/No" to="Menu" method="SaveConfirm" binds= [false]]
 [connection signal="pressed" from="Menu/SaveConfirm/Back" to="Menu" method="Back"]

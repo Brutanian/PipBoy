@@ -1,4 +1,3 @@
-@tool
 extends PathNode
 class_name LevelNode
 
@@ -7,6 +6,7 @@ class_name LevelNode
 @export var Scene : PackedScene
 @export var ID : int = 0
 @export var NodeIcon : Texture2D = preload("res://Textures/MapLevel.png")
+@export_node_path(PathNode) var HiddenExit : NodePath
 
 @export_subgroup("Palette")
 @export var Colour1 : Color = Color.BLACK
@@ -19,23 +19,28 @@ func Unlock(Instant : bool = false):
 	get_parent().AddLevelTile(floor(position / GRID_SIZE), self)
 	queue_redraw()
 
-func CompleteLevel():
+func CompleteLevel(Hidden : bool = false):
 	Complete()
 	EndLevel()
 	DecorVis()
-	(SaveManager.Current as SaveFile).CompleteLevel(ID)
-	SaveManager.Save()
+	SaveManager.Current.CompleteLevel(ID)
 
 func EndLevel():
 	pass
 
 func PlayLevel():
+	get_parent().DisablePlayer()
+	Filter.DitherOut(PlayLevelTrig)
+
+func PlayLevelTrig():
+	Filter.DitherIn()
 	print("Playing Level [Node: %s]" % name)
 	var NewLevel = Scene.instantiate()
 	NewLevel.Complete.connect(CompleteLevel)
 	NewLevel.Lost.connect(EndLevel)
 	get_tree().root.add_child(NewLevel)
 	get_parent().StartedLevel(self, NewLevel)
+	Filter.FadePaletteToMult(Colour1,Colour2,Colour3,Colour4,0.5)
 
 func _draw():
 	if Unlocked:

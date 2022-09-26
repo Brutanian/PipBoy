@@ -21,3 +21,10 @@ func GetSaveFileStr(Index : int):
 
 func Save():
 	ResourceSaver.save(Current,SAVE_PATH % Current.Index)
+
+func EraseSave():
+	var FilePath : String = SAVE_PATH % Current.Index
+	if File.file_exists(FilePath):
+		var Dir := Directory.new()
+		Dir.open("res://Saves")
+		Dir.remove(FilePath)

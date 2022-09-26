@@ -1,7 +1,7 @@
 extends TileMap
 class_name LevelController
 
-signal Complete()
+signal Complete(Hidden : bool)
 signal Lost()
 
 var Player : CharacterBody2D
@@ -9,17 +9,18 @@ var Player : CharacterBody2D
 func _ready():
 	for c in get_used_cells(0):
 		var TileInfo : TileData = get_cell_tile_data(0, c)
-		var SpawnInst = TileInfo.get_custom_data("Spawn Instance")
-		if SpawnInst is PackedScene:
-			var NewInst : Node2D = SpawnInst.instantiate()
-			NewInst.position = map_to_local(c)
-			add_child(NewInst)
-			set_cell(0, c)
 
 func SetPlayer(PlayerNode : CharacterBody2D):
 	Player = PlayerNode
-	$Camera.SetPlayer(PlayerNode)
+	for c in get_children():
+		if c.has_method("SetPlayer"):
+			c.SetPlayer(PlayerNode)
 
-func LevelComplete():
-	Complete.emit()
+func LevelComplete(Hidden : bool = false):
+	process_mode = Node.PROCESS_MODE_DISABLED
+	Filter.DitherOut(LevelCompleteTrig.bind(Hidden))
+
+func LevelCompleteTrig(Hidden : bool = false):
+	Filter.DitherIn()
+	Complete.emit(Hidden)
 	queue_free()

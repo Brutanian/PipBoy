@@ -33,7 +33,8 @@ func FinishLevel():
 
 func OpenPage(PageNode : Control, FocusChild : int = -1):
 	for c in get_children():
-		c.visible = c == PageNode
+		if c is Control:
+			c.visible = c == PageNode
 	if FocusChild != -1:
 		PageNode.get_child(FocusChild).grab_focus()
 	PageOpen = PageNode
@@ -41,6 +42,19 @@ func OpenPage(PageNode : Control, FocusChild : int = -1):
 func _input(event):
 	if OnWorldMap and Input.is_action_just_pressed("Start"):
 		Pause()
+	if((Input.is_action_just_pressed("Up") || Input.is_action_just_pressed("Down") ||
+			Input.is_action_just_pressed("Left") || Input.is_action_just_pressed("Right")) && visible):
+		Play("Select")
+
+func Play(Audio : String):
+	match Audio:
+		"Select":
+			$MenuAudio.stream = preload("res://Audio/SFX/MenuSelection.wav")
+		"Confirm":
+			$MenuAudio.stream = preload("res://Audio/SFX/MenuConfirm.wav")
+		"Back":
+			$MenuAudio.stream = preload("res://Audio/SFX/MenuBack.wav")
+	$MenuAudio.play()
 
 func OpenSettings():
 	OpenPage($Settings)
@@ -67,6 +81,7 @@ func Back():
 		else:
 			OpenPage($Main, 2)
 		Settings.Save()
+	Play("Back")
 
 func SettingsSection(Section : int):
 	$%VideoSection.visible = Section == VIDEO
@@ -85,6 +100,7 @@ func SettingsSection(Section : int):
 			$%Video.grab_focus()
 		CONTROL:
 			$%Video.grab_focus()
+	Play("Confirm")
 
 func Exit():
 	Settings.Save()
@@ -106,36 +122,49 @@ func SetColorMode(New : int):
 	Settings.Current.ColorMode = New
 	Settings.Apply()
 
-func Play():
+func SaveFiles():
 	UpdateSaves()
 	OpenPage($SaveFileSelect, 1)
+	Play("Confirm")
 
 func Pause():
-	OpenPage($MapPause, 1)
+	if InLevel:
+		OpenPage($LevelPause)
+		MapScene.CurrentLevel.process_mode = Node.PROCESS_MODE_DISABLED
+		MapScene.CurrentLevel.visible = false
+	elif OnWorldMap:
+		OpenPage($MapPause, 1)
+		MapScene.process_mode = Node.PROCESS_MODE_DISABLED
+		MapScene.visible = false
 	visible = true
-	MapScene.process_mode = Node.PROCESS_MODE_DISABLED
-	MapScene.visible = false
 	SetPalette()
+	Play("Back")
 
 func Resume():
-	if OnWorldMap:
-		MapScene.process_mode = Node.PROCESS_MODE_ALWAYS
-		MapScene.visible = true
-	elif InLevel:
+	if InLevel:
 		MapScene.CurrentLevel.process_mode = Node.PROCESS_MODE_ALWAYS
 		MapScene.CurrentLevel.visible = true
+	elif OnWorldMap:
+		MapScene.process_mode = Node.PROCESS_MODE_ALWAYS
+		MapScene.visible = true
 	visible = false
 	ReturnPalette()
+	Play("Confirm")
 
 func MainMenu():
 	OpenPage($SaveConfirm, 1)
+	Play("Confirm")
 
 func SaveConfirm(Save : bool = true):
 	OpenPage($Main, 1)
+	if Save:
+		SaveManager.Save()
 	MapScene.queue_free()
 	OnWorldMap = false
+	Play("Confirm")
 
 func SetPalette(FadeTime : float = 0.0):
+	Filter.CompleteNow()
 	SavedPalette = [
 		Filter.GetPaletteColour(0), Filter.GetPaletteColour(1),
 		Filter.GetPaletteColour(2), Filter.GetPaletteColour(3)
@@ -146,12 +175,19 @@ func ReturnPalette(FadeTime : float = 0.0):
 	Filter.FadePaletteToMult(SavedPalette[0],SavedPalette[1],SavedPalette[2],SavedPalette[3],FadeTime)
 
 func SaveFileSelect(Index : int = -1):
-	OpenPage($SaveFileOptions, 1)
-	SaveManager.LoadSave(Index)
+	if SaveManager.GetSaveFileStr(Index) == "Empty":
+		SaveManager.LoadSave(Index)
+		PlaySave()
+	else:
+		SaveManager.LoadSave(Index)
+		OpenPage($SaveFileOptions, 1)
+	Play("Confirm")
 
 func EraseSave():
+	SaveManager.EraseSave()
 	UpdateSaves()
 	OpenPage($SaveFileSelect, 1)
+	Play("Confirm")
 
 func PlaySave():
 	var NewGame = load("res://Game/WorldMap/WorldMap.tscn").instantiate()
@@ -160,6 +196,7 @@ func PlaySave():
 	visible = false
 	OnWorldMap = true
 	MapScene.LevelChange.connect(LevelChanged)
+	Play("Confirm")
 
 func UpdateSaves():
 	$%File1.text = SaveManager.GetSaveFileStr(1)
@@ -172,3 +209,4 @@ func LevelChanged(In : bool):
 func GoWorldMap():
 	visible = false
 	OnWorldMap = true
+	MapScene.ForceFinishLevel()
