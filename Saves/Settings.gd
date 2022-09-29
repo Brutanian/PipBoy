@@ -20,7 +20,7 @@ func Save():
 	ResourceSaver.save(Current, SAVE_PATH)
 
 func Load():
-	if File.new().file_exists(SAVE_PATH):
+	if FileAccess.file_exists(SAVE_PATH):
 		Current = load(SAVE_PATH) as SavedSettings
 		print("File Exists")
 	else:

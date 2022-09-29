@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://brkvwh87sujwl"]
+[gd_scene load_steps=19 format=3 uid="uid://brkvwh87sujwl"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_7qn0h"]
+[ext_resource type="PackedScene" uid="uid://tgd6mgxpuo5r" path="res://Game/WorldMap/WorldMap.tscn" id="2_nh5sq"]
 [ext_resource type="Script" path="res://UI/VolumeSlider.gd" id="2_sydsq"]
 [ext_resource type="Script" path="res://UI/KeybindInput.gd" id="3_ka7iy"]
 
@@ -65,9 +66,9 @@ MenuColour1 = Color(0, 0.431373, 0.321569, 1)
 MenuColour2 = Color(1, 0.690196, 0, 1)
 MenuColour3 = Color(0.776471, 0.533333, 0, 1)
 MenuColour4 = Color(1, 0.815686, 0.545098, 1)
+WMScene = ExtResource("2_nh5sq")
 
 [node name="Main" type="VBoxContainer" parent="Menu"]
-layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,7 +79,6 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Menu/Main"]
-layout_mode = 2
 offset_top = 22.0
 offset_right = 140.0
 offset_bottom = 37.0
@@ -87,7 +87,6 @@ text = "Pip Boy"
 horizontal_alignment = 1
 
 [node name="Play" type="Button" parent="Menu/Main"]
-layout_mode = 2
 offset_top = 41.0
 offset_right = 140.0
 offset_bottom = 65.0
@@ -97,7 +96,6 @@ theme_override_font_sizes/font_size = 8
 text = "Play"
 
 [node name="Settings" type="Button" parent="Menu/Main"]
-layout_mode = 2
 offset_top = 69.0
 offset_right = 140.0
 offset_bottom = 93.0
@@ -107,7 +105,6 @@ theme_override_font_sizes/font_size = 8
 text = "Settings"
 
 [node name="Exit" type="Button" parent="Menu/Main"]
-layout_mode = 2
 offset_top = 97.0
 offset_right = 140.0
 offset_bottom = 121.0
@@ -118,7 +115,6 @@ text = "Exit"
 
 [node name="MapPause" type="VBoxContainer" parent="Menu"]
 visible = false
-layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -129,7 +125,6 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Menu/MapPause"]
-layout_mode = 2
 offset_top = 22.0
 offset_right = 140.0
 offset_bottom = 37.0
@@ -138,7 +133,6 @@ text = "Pause"
 horizontal_alignment = 1
 
 [node name="Resume" type="Button" parent="Menu/MapPause"]
-layout_mode = 2
 offset_top = 41.0
 offset_right = 140.0
 offset_bottom = 65.0
@@ -148,7 +142,6 @@ theme_override_font_sizes/font_size = 8
 text = "Resume"
 
 [node name="Settings" type="Button" parent="Menu/MapPause"]
-layout_mode = 2
 offset_top = 69.0
 offset_right = 140.0
 offset_bottom = 93.0
@@ -158,7 +151,6 @@ theme_override_font_sizes/font_size = 8
 text = "Settings"
 
 [node name="MainMenu" type="Button" parent="Menu/MapPause"]
-layout_mode = 2
 offset_top = 97.0
 offset_right = 140.0
 offset_bottom = 121.0
@@ -169,7 +161,6 @@ text = "Main Menu"
 
 [node name="LevelPause" type="VBoxContainer" parent="Menu"]
 visible = false
-layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -180,7 +171,6 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Menu/LevelPause"]
-layout_mode = 2
 offset_top = 22.0
 offset_right = 140.0
 offset_bottom = 37.0
@@ -189,7 +179,6 @@ text = "Pause"
 horizontal_alignment = 1
 
 [node name="Resume" type="Button" parent="Menu/LevelPause"]
-layout_mode = 2
 offset_top = 41.0
 offset_right = 140.0
 offset_bottom = 65.0
@@ -199,7 +188,6 @@ theme_override_font_sizes/font_size = 8
 text = "Resume"
 
 [node name="Settings" type="Button" parent="Menu/LevelPause"]
-layout_mode = 2
 offset_top = 69.0
 offset_right = 140.0
 offset_bottom = 93.0
@@ -209,7 +197,6 @@ theme_override_font_sizes/font_size = 8
 text = "Settings"
 
 [node name="ExitLevel" type="Button" parent="Menu/LevelPause"]
-layout_mode = 2
 offset_top = 97.0
 offset_right = 140.0
 offset_bottom = 121.0
@@ -220,7 +207,6 @@ text = "Exit Level"
 
 [node name="SaveConfirm" type="VBoxContainer" parent="Menu"]
 visible = false
-layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -231,7 +217,6 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Menu/SaveConfirm"]
-layout_mode = 2
 offset_top = 36.0
 offset_right = 140.0
 offset_bottom = 51.0
@@ -240,14 +225,12 @@ text = "Save?"
 horizontal_alignment = 1
 
 [node name="HBox" type="HBoxContainer" parent="Menu/SaveConfirm"]
-layout_mode = 2
 offset_top = 55.0
 offset_right = 140.0
 offset_bottom = 79.0
 alignment = 1
 
 [node name="Yes" type="Button" parent="Menu/SaveConfirm/HBox"]
-layout_mode = 2
 offset_left = 32.0
 offset_right = 72.0
 offset_bottom = 24.0
@@ -257,7 +240,6 @@ theme_override_font_sizes/font_size = 8
 text = "Yes"
 
 [node name="No" type="Button" parent="Menu/SaveConfirm/HBox"]
-layout_mode = 2
 offset_left = 76.0
 offset_right = 108.0
 offset_bottom = 24.0
@@ -267,7 +249,6 @@ theme_override_font_sizes/font_size = 8
 text = "No"
 
 [node name="Back" type="Button" parent="Menu/SaveConfirm"]
-layout_mode = 2
 offset_top = 83.0
 offset_right = 48.0
 offset_bottom = 107.0
@@ -281,7 +262,6 @@ flat = true
 
 [node name="Settings" type="VBoxContainer" parent="Menu"]
 visible = false
-layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -294,14 +274,12 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Sections" type="HBoxContainer" parent="Menu/Settings"]
-layout_mode = 2
 offset_right = 144.0
 offset_bottom = 7.0
 alignment = 1
 
 [node name="Audio" type="Button" parent="Menu/Settings/Sections"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_left = 8.0
 offset_right = 43.0
 offset_bottom = 7.0
@@ -317,7 +295,6 @@ flat = true
 
 [node name="Video" type="Button" parent="Menu/Settings/Sections"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_left = 47.0
 offset_right = 82.0
 offset_bottom = 7.0
@@ -334,7 +311,6 @@ flat = true
 
 [node name="Control" type="Button" parent="Menu/Settings/Sections"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_left = 86.0
 offset_right = 135.0
 offset_bottom = 7.0
@@ -349,7 +325,6 @@ text = "Control"
 flat = true
 
 [node name="HSep" type="HSeparator" parent="Menu/Settings"]
-layout_mode = 2
 offset_top = 11.0
 offset_right = 144.0
 offset_bottom = 15.0
@@ -357,7 +332,6 @@ offset_bottom = 15.0
 [node name="VideoSection" type="VBoxContainer" parent="Menu/Settings"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
 offset_top = 19.0
 offset_right = 144.0
 offset_bottom = 117.0
@@ -365,7 +339,6 @@ size_flags_vertical = 3
 
 [node name="ColorMode" type="ItemList" parent="Menu/Settings/VideoSection"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_right = 144.0
 offset_bottom = 27.0
 theme_override_constants/v_separation = 1
@@ -379,14 +352,12 @@ item_2/text = "Color"
 script = SubResource("GDScript_8e4mg")
 
 [node name="HSep2" type="HSeparator" parent="Menu/Settings/VideoSection"]
-layout_mode = 2
 offset_top = 31.0
 offset_right = 144.0
 offset_bottom = 35.0
 
 [node name="FullScreen" type="CheckButton" parent="Menu/Settings/VideoSection"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 39.0
 offset_right = 144.0
 offset_bottom = 47.0
@@ -396,7 +367,6 @@ flat = true
 
 [node name="VSync" type="CheckButton" parent="Menu/Settings/VideoSection"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 51.0
 offset_right = 144.0
 offset_bottom = 59.0
@@ -406,7 +376,6 @@ flat = true
 
 [node name="ReduceEffects" type="CheckButton" parent="Menu/Settings/VideoSection"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 63.0
 offset_right = 144.0
 offset_bottom = 71.0
@@ -417,21 +386,18 @@ flat = true
 [node name="AudioSection" type="VBoxContainer" parent="Menu/Settings"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
 offset_top = 19.0
 offset_right = 144.0
 offset_bottom = 128.0
 size_flags_vertical = 3
 
 [node name="MasterLabel" type="Label" parent="Menu/Settings/AudioSection"]
-layout_mode = 2
 offset_right = 144.0
 offset_bottom = 8.0
 theme_override_font_sizes/font_size = 8
 text = "Master - 100%"
 
 [node name="MasterSlider" type="HSlider" parent="Menu/Settings/AudioSection"]
-layout_mode = 2
 offset_top = 12.0
 offset_right = 144.0
 offset_bottom = 20.0
@@ -444,7 +410,6 @@ Bus = "Master"
 LabelPath = NodePath("../MasterLabel")
 
 [node name="MusicLabel" type="Label" parent="Menu/Settings/AudioSection"]
-layout_mode = 2
 offset_top = 24.0
 offset_right = 144.0
 offset_bottom = 32.0
@@ -452,7 +417,6 @@ theme_override_font_sizes/font_size = 8
 text = "Music - 100%"
 
 [node name="MusicSlider" type="HSlider" parent="Menu/Settings/AudioSection"]
-layout_mode = 2
 offset_top = 36.0
 offset_right = 144.0
 offset_bottom = 44.0
@@ -465,7 +429,6 @@ Bus = "Music"
 LabelPath = NodePath("../MusicLabel")
 
 [node name="SFXLabel" type="Label" parent="Menu/Settings/AudioSection"]
-layout_mode = 2
 offset_top = 48.0
 offset_right = 144.0
 offset_bottom = 56.0
@@ -473,7 +436,6 @@ theme_override_font_sizes/font_size = 8
 text = "SFX - 100%"
 
 [node name="SFXSlider" type="HSlider" parent="Menu/Settings/AudioSection"]
-layout_mode = 2
 offset_top = 60.0
 offset_right = 144.0
 offset_bottom = 68.0
@@ -487,21 +449,18 @@ LabelPath = NodePath("../SFXLabel")
 
 [node name="ControlSection" type="VBoxContainer" parent="Menu/Settings"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 19.0
 offset_right = 144.0
 offset_bottom = 95.0
 size_flags_vertical = 3
 
 [node name="UpLabel" type="Label" parent="Menu/Settings/ControlSection"]
-layout_mode = 2
 offset_right = 144.0
 offset_bottom = 8.0
 theme_override_font_sizes/font_size = 8
 text = "Up"
 
 [node name="Input" type="Label" parent="Menu/Settings/ControlSection/UpLabel"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -516,7 +475,6 @@ InitialKey = "W"
 ActionName = "Up"
 
 [node name="DownLabel" type="Label" parent="Menu/Settings/ControlSection"]
-layout_mode = 2
 offset_top = 12.0
 offset_right = 144.0
 offset_bottom = 20.0
@@ -524,7 +482,6 @@ theme_override_font_sizes/font_size = 8
 text = "Down"
 
 [node name="Input" type="Label" parent="Menu/Settings/ControlSection/DownLabel"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -539,7 +496,6 @@ InitialKey = "S"
 ActionName = "Down"
 
 [node name="LeftLabel" type="Label" parent="Menu/Settings/ControlSection"]
-layout_mode = 2
 offset_top = 24.0
 offset_right = 144.0
 offset_bottom = 32.0
@@ -547,7 +503,6 @@ theme_override_font_sizes/font_size = 8
 text = "Left"
 
 [node name="Input" type="Label" parent="Menu/Settings/ControlSection/LeftLabel"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -562,7 +517,6 @@ InitialKey = "A"
 ActionName = "Left"
 
 [node name="RightLabel" type="Label" parent="Menu/Settings/ControlSection"]
-layout_mode = 2
 offset_top = 36.0
 offset_right = 144.0
 offset_bottom = 44.0
@@ -570,7 +524,6 @@ theme_override_font_sizes/font_size = 8
 text = "Right"
 
 [node name="Input" type="Label" parent="Menu/Settings/ControlSection/RightLabel"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -585,13 +538,11 @@ InitialKey = "D"
 ActionName = "Right"
 
 [node name="HSeparator" type="HSeparator" parent="Menu/Settings/ControlSection"]
-layout_mode = 2
 offset_top = 48.0
 offset_right = 144.0
 offset_bottom = 52.0
 
 [node name="ALabel" type="Label" parent="Menu/Settings/ControlSection"]
-layout_mode = 2
 offset_top = 56.0
 offset_right = 144.0
 offset_bottom = 64.0
@@ -599,7 +550,6 @@ theme_override_font_sizes/font_size = 8
 text = "A"
 
 [node name="Input" type="Label" parent="Menu/Settings/ControlSection/ALabel"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -614,7 +564,6 @@ InitialKey = "Space"
 ActionName = "A"
 
 [node name="BLabel" type="Label" parent="Menu/Settings/ControlSection"]
-layout_mode = 2
 offset_top = 68.0
 offset_right = 144.0
 offset_bottom = 76.0
@@ -622,7 +571,6 @@ theme_override_font_sizes/font_size = 8
 text = "B"
 
 [node name="Input" type="Label" parent="Menu/Settings/ControlSection/BLabel"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -637,13 +585,11 @@ InitialKey = "Shift"
 ActionName = "B"
 
 [node name="HSep2" type="HSeparator" parent="Menu/Settings"]
-layout_mode = 2
 offset_top = 99.0
 offset_right = 144.0
 offset_bottom = 103.0
 
 [node name="BackButton" type="Button" parent="Menu/Settings"]
-layout_mode = 2
 offset_top = 106.743
 offset_right = 48.0
 offset_bottom = 131.0
@@ -655,7 +601,6 @@ flat = true
 
 [node name="SaveFileSelect" type="VBoxContainer" parent="Menu"]
 visible = false
-layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -666,7 +611,6 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Menu/SaveFileSelect"]
-layout_mode = 2
 offset_top = 1.0
 offset_right = 140.0
 offset_bottom = 31.0
@@ -677,7 +621,6 @@ horizontal_alignment = 1
 
 [node name="File1" type="Button" parent="Menu/SaveFileSelect"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 35.0
 offset_right = 140.0
 offset_bottom = 59.0
@@ -688,7 +631,6 @@ text = "Empty"
 
 [node name="File2" type="Button" parent="Menu/SaveFileSelect"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 63.0
 offset_right = 140.0
 offset_bottom = 87.0
@@ -699,7 +641,6 @@ text = "Empty"
 
 [node name="File3" type="Button" parent="Menu/SaveFileSelect"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 91.0
 offset_right = 140.0
 offset_bottom = 115.0
@@ -710,7 +651,6 @@ text = "Empty
 "
 
 [node name="Back" type="Button" parent="Menu/SaveFileSelect"]
-layout_mode = 2
 offset_top = 119.0
 offset_right = 48.0
 offset_bottom = 143.0
@@ -724,7 +664,6 @@ flat = true
 
 [node name="SaveFileOptions" type="VBoxContainer" parent="Menu"]
 visible = false
-layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -735,7 +674,6 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Menu/SaveFileOptions"]
-layout_mode = 2
 offset_top = 22.0
 offset_right = 140.0
 offset_bottom = 37.0
@@ -744,7 +682,6 @@ text = "File Info"
 horizontal_alignment = 1
 
 [node name="Play" type="Button" parent="Menu/SaveFileOptions"]
-layout_mode = 2
 offset_top = 41.0
 offset_right = 140.0
 offset_bottom = 65.0
@@ -754,7 +691,6 @@ theme_override_font_sizes/font_size = 8
 text = "Play"
 
 [node name="Erase" type="Button" parent="Menu/SaveFileOptions"]
-layout_mode = 2
 offset_top = 69.0
 offset_right = 140.0
 offset_bottom = 93.0
@@ -764,7 +700,6 @@ theme_override_font_sizes/font_size = 8
 text = "Erase"
 
 [node name="Back" type="Button" parent="Menu/SaveFileOptions"]
-layout_mode = 2
 offset_top = 97.0
 offset_right = 48.0
 offset_bottom = 121.0

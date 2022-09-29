@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://c1rnywcj7ll1c" path="res://Game/LevelAssets/LevelTiles.res" id="1_ymbo5"]
 [ext_resource type="Script" path="res://Game/Levels/LevelControl.gd" id="2_vdec6"]
 [ext_resource type="Script" path="res://Game/Levels/PlayerCamera.gd" id="3_01vmh"]
-[ext_resource type="PackedScene" uid="uid://d21wwi5sex0d7" path="res://Game/LevelAssets/Boulder.tscn" id="4_k2crd"]
+[ext_resource type="PackedScene" path="res://Game/LevelAssets/Boulder.tscn" id="4_k2crd"]
 
 [node name="LevelFinale" type="TileMap"]
 tile_set = ExtResource("1_ymbo5")

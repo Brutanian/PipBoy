@@ -6,6 +6,8 @@ extends Control
 @export var MenuColour3 : Color
 @export var MenuColour4 : Color
 
+@export var WMScene : PackedScene
+
 var SavedPalette : PackedColorArray
 
 enum {AUDIO,VIDEO,CONTROL}
@@ -190,7 +192,7 @@ func EraseSave():
 	Play("Confirm")
 
 func PlaySave():
-	var NewGame = load("res://Game/WorldMap/WorldMap.tscn").instantiate()
+	var NewGame = WMScene.instantiate()
 	MapScene = NewGame
 	get_tree().root.add_child(MapScene)
 	visible = false
